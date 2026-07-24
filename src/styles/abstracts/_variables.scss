@@ -12,10 +12,10 @@ $color-overlay: rgba(#000, 0.55);
 $color-error: #ff6b6b;
 $color-success: #6ee7b7;
 
-$font-family-display: 'Karla', Arial, sans-serif;
-$font-family-heading: 'Fira Code', 'Courier New', monospace;
-$font-family-body: 'Karla', Arial, sans-serif;
-$font-family-accent: 'Poppins', Arial, sans-serif;
+$font-family-display: 'Karla';
+$font-family-heading: 'Fira Code';
+$font-family-body: 'Karla';
+$font-family-accent: 'Poppins';
 $font-size-base: 1rem;
 $font-size-hero-mobile: 3.875rem;
 $font-size-hero-desktop: 8rem;
@@ -40,6 +40,7 @@ $line-height-body: normal;
 $line-height-heading: normal;
 $letter-spacing-display: -0.125rem;
 $letter-spacing-heading: -0.1875rem;
+$letter-spacing-navigation: -0.03em;
 
 $spacing-1: 0.25rem;
 $spacing-2: 0.5rem;
