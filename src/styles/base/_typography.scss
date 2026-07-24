@@ -1,0 +1,39 @@
+@use '../abstracts' as *;
+
+html {
+  font-size: 100%;
+}
+
+body {
+  font-family: $font-family-body;
+  font-size: $font-size-base;
+  font-weight: $font-weight-regular;
+  line-height: $line-height-body;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: $font-family-heading;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-heading;
+}
+
+h1 {
+  font-size: clamp(rem(40), 6vw, rem(96));
+}
+
+h2 {
+  font-size: clamp(rem(32), 4vw, rem(64));
+}
+
+h3 {
+  font-size: clamp(rem(24), 2.5vw, rem(40));
+}
+
+p {
+  max-width: 70ch;
+}

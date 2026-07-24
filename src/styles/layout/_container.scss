@@ -1,0 +1,9 @@
+@use '../abstracts' as *;
+
+.container {
+  @include page-container;
+}
+
+.section {
+  padding-block: clamp($spacing-8, 8vw, $spacing-10);
+}

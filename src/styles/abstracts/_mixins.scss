@@ -1,0 +1,70 @@
+@use 'sass:map';
+@use 'variables' as *;
+
+@mixin respond-from($breakpoint) {
+  $value: map.get($breakpoints, $breakpoint);
+
+  @if $value == null {
+    @error 'Unknown breakpoint: #{$breakpoint}';
+  }
+
+  @media (min-width: $value) {
+    @content;
+  }
+}
+
+@mixin respond-until($breakpoint) {
+  $value: map.get($breakpoints, $breakpoint);
+
+  @if $value == null {
+    @error 'Unknown breakpoint: #{$breakpoint}';
+  }
+
+  @media (max-width: calc($value - 0.0625rem)) {
+    @content;
+  }
+}
+
+@mixin flex($align: center, $justify: flex-start, $gap: 0, $direction: row) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+  gap: $gap;
+}
+
+@mixin grid($columns: 1, $gap: $spacing-5) {
+  display: grid;
+  grid-template-columns: repeat($columns, minmax(0, 1fr));
+  gap: $gap;
+}
+
+@mixin page-container {
+  width: min(100% - (2 * $page-padding-mobile), $content-width);
+  margin-inline: auto;
+
+  @include respond-from(tablet) {
+    width: min(100% - (2 * $page-padding-tablet), $content-width);
+  }
+
+  @include respond-from(desktop) {
+    width: min(100% - (2 * $page-padding-desktop), $content-width);
+  }
+
+  @include respond-from(widescreen) {
+    max-width: $content-width-wide;
+  }
+}
+
+@mixin focus-visible {
+  &:focus-visible {
+    outline: 0.125rem solid $color-primary;
+    outline-offset: 0.25rem;
+  }
+}
+
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}

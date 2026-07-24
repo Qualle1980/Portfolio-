@@ -1,0 +1,59 @@
+$color-background: #1c1c1c;
+$color-background-deep: #111a18;
+$color-surface: #1b342f;
+$color-surface-strong: #22584e;
+$color-primary: #49d7c7;
+$color-primary-dark: #20a996;
+$color-text: #f3f3f3;
+$color-text-muted: #b8bfbd;
+$color-border: rgba($color-primary, 0.7);
+$color-overlay: rgba(#000, 0.55);
+$color-error: #ff6b6b;
+$color-success: #6ee7b7;
+
+$font-family-heading: 'Roboto Mono', 'Courier New', monospace;
+$font-family-body: Arial, Helvetica, sans-serif;
+$font-size-base: 1rem;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+$line-height-body: 1.5;
+$line-height-heading: 1.15;
+
+$spacing-1: 0.25rem;
+$spacing-2: 0.5rem;
+$spacing-3: 0.75rem;
+$spacing-4: 1rem;
+$spacing-5: 1.5rem;
+$spacing-6: 2rem;
+$spacing-7: 3rem;
+$spacing-8: 4rem;
+$spacing-9: 6rem;
+$spacing-10: 8rem;
+
+$radius-small: 0.5rem;
+$radius-medium: 1rem;
+$radius-large: 1.5rem;
+$radius-round: 999rem;
+
+$transition-fast: 150ms ease;
+$transition-base: 250ms ease;
+
+$breakpoints: (
+  mobile-small: 20rem,
+  mobile: 23.4375rem,
+  mobile-large: 30rem,
+  tablet: 48rem,
+  desktop: 64rem,
+  desktop-large: 80rem,
+  desktop-wide: 90rem,
+  full-hd: 120rem,
+  widescreen: 160rem,
+  ultra-wide: 215rem,
+);
+
+$content-width: 90rem;
+$content-width-wide: 100rem;
+$page-padding-mobile: $spacing-4;
+$page-padding-tablet: $spacing-6;
+$page-padding-desktop: $spacing-8;
