@@ -2,12 +2,20 @@ import { Language, PortfolioCopy } from '../models/portfolio.models';
 
 export const PORTFOLIO_CONTENT: Readonly<Record<Language, PortfolioCopy>> = {
   de: {
-    navigation: [],
+    navigation: [
+      { label: 'Über mich', fragment: 'about' },
+      { label: 'Skills', fragment: 'skills' },
+      { label: 'Projekte', fragment: 'projects' },
+    ],
     projects: [],
     testimonials: [],
   },
   en: {
-    navigation: [],
+    navigation: [
+      { label: 'About me', fragment: 'about' },
+      { label: 'Skills', fragment: 'skills' },
+      { label: 'Projects', fragment: 'projects' },
+    ],
     projects: [],
     testimonials: [],
   },

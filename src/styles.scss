@@ -1,3 +1,11 @@
+@use '@fontsource/karla/latin-400.css' as karla-regular;
+@use '@fontsource/karla/latin-500.css' as karla-medium;
+@use '@fontsource/karla/latin-700.css' as karla-bold;
+@use '@fontsource/fira-code/latin-400.css' as fira-code-regular;
+@use '@fontsource/fira-code/latin-500.css' as fira-code-medium;
+@use '@fontsource/fira-code/latin-700.css' as fira-code-bold;
+@use '@fontsource/poppins/latin-700.css' as poppins-bold;
+
 @use 'styles/base';
 @use 'styles/components';
 @use 'styles/layout';

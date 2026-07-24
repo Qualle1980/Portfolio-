@@ -23,17 +23,44 @@ h4 {
 }
 
 h1 {
-  font-size: clamp(rem(40), 6vw, rem(96));
+  color: $color-text;
+  font-family: $font-family-display;
+  font-size: $font-size-hero-mobile;
+  letter-spacing: $letter-spacing-display;
 }
 
 h2 {
-  font-size: clamp(rem(32), 4vw, rem(64));
+  font-size: $font-size-section-mobile;
+  letter-spacing: $letter-spacing-heading;
 }
 
 h3 {
-  font-size: clamp(rem(24), 2.5vw, rem(40));
+  font-size: $font-size-reference-mobile;
+  line-height: 1;
+}
+
+h4 {
+  font-size: $font-size-subheading-mobile;
 }
 
 p {
   max-width: 70ch;
+}
+
+@include respond-from(desktop) {
+  h1 {
+    font-size: $font-size-hero-desktop;
+  }
+
+  h2 {
+    font-size: $font-size-section-desktop;
+  }
+
+  h3 {
+    font-size: $font-size-reference-desktop;
+  }
+
+  h4 {
+    font-size: $font-size-subheading-desktop;
+  }
 }

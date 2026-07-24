@@ -42,18 +42,6 @@
 @mixin page-container {
   width: min(100% - (2 * $page-padding-mobile), $content-width);
   margin-inline: auto;
-
-  @include respond-from(tablet) {
-    width: min(100% - (2 * $page-padding-tablet), $content-width);
-  }
-
-  @include respond-from(desktop) {
-    width: min(100% - (2 * $page-padding-desktop), $content-width);
-  }
-
-  @include respond-from(widescreen) {
-    max-width: $content-width-wide;
-  }
 }
 
 @mixin focus-visible {

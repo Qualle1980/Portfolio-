@@ -5,5 +5,6 @@ import { Component } from '@angular/core';
   imports: [],
   templateUrl: './about.html',
   styleUrl: './about.scss',
+  host: { id: 'about', class: 'section' },
 })
 export class About {}

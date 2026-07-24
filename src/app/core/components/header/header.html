@@ -1,1 +1,66 @@
-<p>header works!</p>
+<header class="header">
+  <div class="header__inner">
+    <a class="header__brand" routerLink="/" aria-label="Ahmad Ataya – Startseite">
+      <span class="header__monogram" aria-hidden="true">
+        <span>A</span>
+        <span>A</span>
+      </span>
+      <span class="header__brand-name">Ahmad<br />Ataya</span>
+    </a>
+
+    <button
+      class="header__menu-button"
+      type="button"
+      [class.header__menu-button--open]="isMenuOpen()"
+      [attr.aria-expanded]="isMenuOpen()"
+      aria-controls="main-menu"
+      [attr.aria-label]="menuLabel()"
+      (click)="toggleMenu()"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div id="main-menu" class="header__navigation" [class.header__navigation--open]="isMenuOpen()">
+      <div class="header__language-switch" role="group" aria-label="Choose language">
+        <button
+          class="header__language-button"
+          type="button"
+          [class.header__language-button--active]="language() === 'en'"
+          [attr.aria-pressed]="language() === 'en'"
+          (click)="setLanguage('en')"
+        >
+          EN
+        </button>
+        <button
+          class="header__language-button"
+          type="button"
+          [class.header__language-button--active]="language() === 'de'"
+          [attr.aria-pressed]="language() === 'de'"
+          (click)="setLanguage('de')"
+        >
+          DE
+        </button>
+      </div>
+
+      <nav class="header__nav" aria-label="Hauptnavigation">
+        <ul class="header__nav-list">
+          @for (item of navigation(); track item.fragment) {
+            <li class="header__nav-item">
+              <a
+                class="header__nav-link"
+                [class.header__nav-link--active]="activeSection() === item.fragment"
+                routerLink="/"
+                [fragment]="item.fragment"
+                (click)="navigateTo(item.fragment)"
+              >
+                {{ item.label }}
+              </a>
+            </li>
+          }
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
