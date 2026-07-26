@@ -1,1 +1,44 @@
-<p>about works!</p>
+<section class="about" aria-labelledby="about-title">
+  <div class="about__inner">
+    <figure class="about__portrait">
+      <img
+        src="assets/images/ahmad-ataya-profile.jpeg"
+        [alt]="about().photoAlt"
+        width="800"
+        height="1067"
+        loading="lazy"
+        decoding="async"
+      />
+    </figure>
+
+    <div class="about__content">
+      <p class="about__label">{{ about().label }}</p>
+
+      <article class="about__card">
+        <h2 id="about-title" class="about__title">{{ about().title }}</h2>
+        <p class="about__intro">{{ about().intro }}</p>
+
+        <ul class="about__points">
+          @for (point of about().points; track point.icon) {
+            <li class="about__point">
+              <span class="about__icon" aria-hidden="true">
+                @switch (point.icon) {
+                  @case ('location') {
+                    <img src="assets/icons/about-location.svg" alt="" />
+                  }
+                  @case ('learning') {
+                    <img src="assets/icons/about-learning.svg" alt="" />
+                  }
+                  @case ('quality') {
+                    <img src="assets/icons/about-quality.svg" alt="" />
+                  }
+                }
+              </span>
+              <span>{{ point.text }}</span>
+            </li>
+          }
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>

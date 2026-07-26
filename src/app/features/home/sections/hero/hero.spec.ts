@@ -53,7 +53,7 @@ describe('Hero', () => {
       'https://github.com/Qualle1980',
     );
     expect(element.querySelector('[aria-label="LinkedIn"]')?.getAttribute('href')).toBe(
-      'https://www.linkedin.com/in/ahmad-ataya-b82b69a0/',
+      'https://de.linkedin.com/in/ahmad-ataya-b82b69a0',
     );
   });
 });

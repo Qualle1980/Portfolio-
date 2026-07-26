@@ -179,7 +179,7 @@
     overflow: hidden;
     background: rgba($color-text, 0.12);
     transform: translateX(-50%) rotate(-3deg);
-    transform-origin: center;
+    transform-origin: left bottom;
   }
 
   &__marquee-track {

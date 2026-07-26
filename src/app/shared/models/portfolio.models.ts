@@ -15,6 +15,21 @@ export interface HeroCopy {
   readonly ticker: readonly string[];
 }
 
+export type AboutIcon = 'location' | 'learning' | 'quality';
+
+export interface AboutPoint {
+  readonly icon: AboutIcon;
+  readonly text: string;
+}
+
+export interface AboutCopy {
+  readonly label: string;
+  readonly title: string;
+  readonly intro: string;
+  readonly photoAlt: string;
+  readonly points: readonly AboutPoint[];
+}
+
 export interface Project {
   readonly title: string;
   readonly technologies: readonly string[];
@@ -30,6 +45,7 @@ export interface Testimonial {
 export interface PortfolioCopy {
   readonly navigation: readonly NavigationItem[];
   readonly hero: HeroCopy;
+  readonly about: AboutCopy;
   readonly projects: readonly Project[];
   readonly testimonials: readonly Testimonial[];
 }
