@@ -1,0 +1,141 @@
+@use 'abstracts' as *;
+
+:host {
+  display: block;
+  padding-block: 6.25rem;
+}
+
+.skills {
+  color: $color-text;
+
+  &__inner {
+    @include page-container;
+  }
+
+  &__label {
+    color: $color-primary;
+    font-size: $font-size-section-kicker-mobile;
+    font-weight: $font-weight-medium;
+    line-height: 1.1667;
+  }
+
+  &__card {
+    margin-top: 1rem;
+    padding: 2rem;
+    border: 0.0625rem solid $color-primary;
+    border-radius: $radius-large;
+    background: $color-surface;
+    backdrop-filter: blur(0.25rem);
+  }
+
+  &__title {
+    color: $color-primary;
+    font-size: clamp(2.75rem, 14.35vw, $font-size-section-mobile);
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  &__intro {
+    margin-top: 2rem;
+    font-size: $font-size-body-mobile;
+    line-height: 1.18;
+    text-align: justify;
+  }
+
+  &__prompt {
+    margin-top: 2rem;
+    font-family: $font-family-heading;
+    font-size: $font-size-subheading-mobile;
+    font-weight: $font-weight-bold;
+    line-height: 1.2;
+
+    span {
+      color: $color-primary;
+    }
+  }
+
+  &__support {
+    margin-top: 1rem;
+    color: $color-text-muted;
+    font-size: $font-size-body-mobile;
+    line-height: 1.18;
+  }
+
+  &__button {
+    width: fit-content;
+    margin-top: 2rem;
+    border-color: $color-text;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    row-gap: 3rem;
+    margin-top: 3rem;
+  }
+
+  &__technology {
+    @include flex(center, flex-start, 0.75rem, column);
+    min-width: 0;
+    font-family: $font-family-heading;
+    font-size: $font-size-body-mobile;
+    line-height: 1.15;
+    text-align: center;
+  }
+
+  &__icon {
+    width: 4rem;
+    height: 4rem;
+    object-fit: contain;
+  }
+
+  @include respond-from(desktop) {
+    &__inner {
+      display: grid;
+      grid-template-columns: 32.5rem minmax(0, 1fr);
+      gap: 6rem;
+    }
+
+    &__label {
+      font-size: $font-size-section-kicker-desktop;
+    }
+
+    &__card {
+      min-height: 31rem;
+      margin-top: 1.25rem;
+    }
+
+    &__title {
+      font-size: $font-size-section-desktop;
+    }
+
+    &__intro {
+      margin-top: 2.5rem;
+      font-size: $font-size-body-desktop;
+    }
+
+    &__prompt {
+      font-size: $font-size-subheading-desktop;
+    }
+
+    &__support {
+      font-size: $font-size-body-desktop;
+    }
+
+    &__grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      row-gap: 4rem;
+      margin-top: 3rem;
+    }
+
+    &__technology {
+      font-size: $font-size-body-desktop;
+    }
+  }
+}
+
+@include respond-from(tablet) {
+  :host {
+    padding-block: 9rem;
+  }
+}

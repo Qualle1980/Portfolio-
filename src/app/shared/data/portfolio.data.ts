@@ -1,4 +1,18 @@
-import { Language, PortfolioCopy } from '../models/portfolio.models';
+import { Language, PortfolioCopy, SkillTechnology } from '../models/portfolio.models';
+
+export const SKILL_TECHNOLOGIES: readonly SkillTechnology[] = [
+  { id: 'html5', name: 'HTML' },
+  { id: 'css3', name: 'CSS' },
+  { id: 'javascript', name: 'JavaScript' },
+  { id: 'material-design', name: 'Material Design' },
+  { id: 'typescript', name: 'TypeScript' },
+  { id: 'angular', name: 'Angular' },
+  { id: 'supabase', name: 'Supabase' },
+  { id: 'git', name: 'Git' },
+  { id: 'rest-api', name: 'REST-API' },
+  { id: 'scrum', name: 'Scrum' },
+  { id: 'growth-mindset', name: 'Growth mindset', highlighted: true },
+];
 
 export const PORTFOLIO_CONTENT: Readonly<Record<Language, PortfolioCopy>> = {
   de: {
@@ -41,6 +55,17 @@ export const PORTFOLIO_CONTENT: Readonly<Record<Language, PortfolioCopy>> = {
           text: 'Aus Projektmanagement, technischem Support und Unternehmensführung bringe ich Verantwortung, Kommunikationsstärke und Verständnis für Kundenwünsche mit.',
         },
       ],
+    },
+    skills: {
+      label: 'Technologien',
+      title: 'Skill Set',
+      intro:
+        'In meiner Weiterbildung zum Full-Stack-Entwickler sammle ich praktische Erfahrung mit modernen Frontend-Technologien. Ich arbeite strukturiert, lerne neue Werkzeuge schnell und entwickle mein Wissen kontinuierlich weiter.',
+      prompt: 'Du suchst ',
+      promptHighlight: 'weitere Skills?',
+      support:
+        'Ich bin offen für neue Technologien und freue mich darauf, mein Wissen für künftige Projekte zu erweitern.',
+      cta: 'Kontakt',
     },
     projects: [],
     testimonials: [],
@@ -85,6 +110,17 @@ export const PORTFOLIO_CONTENT: Readonly<Record<Language, PortfolioCopy>> = {
           text: 'Experience in project management, technical support and business management has strengthened my sense of responsibility, communication skills and understanding of client needs.',
         },
       ],
+    },
+    skills: {
+      label: 'Technologies',
+      title: 'Skill Set',
+      intro:
+        'During my full-stack development training, I gain practical experience with modern frontend technologies. I work with clear structures, learn new tools quickly and continuously expand my knowledge.',
+      prompt: 'You need ',
+      promptHighlight: 'another skill?',
+      support:
+        'I am open to new technologies and look forward to expanding my knowledge for future projects.',
+      cta: "Let's Talk",
     },
     projects: [],
     testimonials: [],

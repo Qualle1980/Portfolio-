@@ -1,1 +1,39 @@
-<p>skills works!</p>
+<section class="skills" aria-labelledby="skills-title">
+  <div class="skills__inner">
+    <div class="skills__content">
+      <p class="skills__label">{{ skills().label }}</p>
+
+      <article class="skills__card">
+        <h2 id="skills-title" class="skills__title">{{ skills().title }}</h2>
+        <p class="skills__intro">{{ skills().intro }}</p>
+
+        <p class="skills__prompt">
+          {{ skills().prompt }}<span>{{ skills().promptHighlight }}</span>
+        </p>
+        <p class="skills__support">{{ skills().support }}</p>
+
+        <a class="button skills__button" routerLink="/" fragment="contact">
+          {{ skills().cta }}
+        </a>
+      </article>
+    </div>
+
+    <ul class="skills__grid" [attr.aria-label]="skills().label">
+      @for (technology of technologies; track technology.id) {
+        <li class="skills__technology">
+          <img
+            class="skills__icon"
+            [class.skills__icon--highlighted]="technology.highlighted"
+            [src]="'assets/icons/skills/' + technology.id + '.svg'"
+            alt=""
+            width="64"
+            height="64"
+            loading="lazy"
+            decoding="async"
+          />
+          <span>{{ technology.name }}</span>
+        </li>
+      }
+    </ul>
+  </div>
+</section>
