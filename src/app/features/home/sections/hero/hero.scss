@@ -29,7 +29,7 @@
   }
 
   &__name {
-    margin-top: 1.25rem;
+    margin-top: 1rem;
     color: $color-text-hero;
     font-family: $font-family-display;
     font-size: clamp(3.125rem, 15.9vw, $font-size-hero-mobile);
@@ -41,13 +41,13 @@
 
   &__actions {
     @include flex(center, center, 1.5rem);
-    margin-top: 2rem;
+    margin-top: 1.75rem;
   }
 
   &__button {
     @include flex(center, center);
     min-height: 3rem;
-    padding-inline: 1.25rem;
+    padding-inline: 1.5rem;
     border: 0.0625rem solid $color-text;
     border-radius: $radius-round;
     color: $color-text;
@@ -204,15 +204,17 @@
     }
 
     &__name {
+      margin-top: 1.25rem;
       font-size: clamp(5rem, 8.89vw, $font-size-hero-desktop);
     }
 
     &__actions {
       gap: 3rem;
+      margin-top: 2rem;
     }
 
     &__button {
-      padding-inline: 1.5rem;
+      padding-inline: 1.40625rem;
       font-size: 1.125rem;
     }
 
