@@ -60,9 +60,31 @@ export interface SkillsCopy {
 }
 
 export interface Project {
+  readonly number: string;
   readonly title: string;
+  readonly placeholder?: boolean;
+  readonly description: string;
+  readonly learned: string;
   readonly technologies: readonly string[];
-  readonly url?: string;
+  readonly liveUrl?: string;
+  readonly githubUrl?: string;
+  readonly image: string;
+  readonly imageAlt: string;
+}
+
+export interface ProjectsCopy {
+  readonly label: string;
+  readonly title: string;
+  readonly intro: string;
+  readonly aboutLabel: string;
+  readonly technologiesLabel: string;
+  readonly learnedLabel: string;
+  readonly liveLabel: string;
+  readonly githubLabel: string;
+  readonly closeLabel: string;
+  readonly comingSoonLabel: string;
+  readonly nextLabel: string;
+  readonly items: readonly Project[];
 }
 
 export interface Testimonial {
@@ -76,6 +98,6 @@ export interface PortfolioCopy {
   readonly hero: HeroCopy;
   readonly about: AboutCopy;
   readonly skills: SkillsCopy;
-  readonly projects: readonly Project[];
+  readonly projects: ProjectsCopy;
   readonly testimonials: readonly Testimonial[];
 }

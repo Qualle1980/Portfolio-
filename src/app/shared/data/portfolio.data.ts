@@ -67,7 +67,47 @@ export const PORTFOLIO_CONTENT: Readonly<Record<Language, PortfolioCopy>> = {
         'Ich bin offen für neue Technologien und freue mich darauf, mein Wissen für künftige Projekte zu erweitern.',
       cta: 'Kontakt',
     },
-    projects: [],
+    projects: {
+      label: 'Portfolio',
+      title: 'Ausgewählte Projekte',
+      intro:
+        'Entdecke eine Auswahl meiner Projekte und probiere die Anwendungen direkt aus.',
+      aboutLabel: 'Worum geht es bei diesem Projekt',
+      technologiesLabel: 'Verwendete Technologien',
+      learnedLabel: 'Was ich gelernt habe',
+      liveLabel: 'Live testen',
+      githubLabel: 'GitHub',
+      closeLabel: 'Projektfenster schließen',
+      comingSoonLabel: 'Coming soon',
+      nextLabel: 'Nächstes Projekt',
+      items: [
+        {
+          number: '01',
+          title: 'El Pollo Loco',
+          description:
+            'Ein objektorientiertes Jump-and-Run-Spiel, in dem Pepe Münzen und Flaschen sammelt und gegen Hühner sowie einen Endgegner kämpft.',
+          learned:
+            'Ich habe Klassen, Vererbung, Animationen, Tastatur- und Touchsteuerung sowie Sound in einem vollständigen Spiel zusammengeführt.',
+          technologies: ['HTML', 'CSS', 'JavaScript'],
+          liveUrl: 'https://ahmadataya.developerakademie.net/El%20Pollo%20Loco/',
+          githubUrl: 'https://github.com/Qualle1980/El-Pollo-Loco',
+          image: 'assets/images/projects/el-pollo-loco.png',
+          imageAlt: 'Startbildschirm des Spiels El Pollo Loco',
+        },
+        {
+          number: '02',
+          title: 'Join',
+          placeholder: true,
+          description:
+            'Ein Kanban-Task-Manager zur übersichtlichen Organisation von Aufgaben in den Bereichen To do, In progress, Await feedback und Done.',
+          learned:
+            'Dieses Projekt wird im weiteren Kursverlauf umgesetzt. Die Live- und GitHub-Links werden anschließend ergänzt.',
+          technologies: ['Angular', 'TypeScript', 'HTML', 'SCSS', 'Supabase'],
+          image: 'assets/images/projects/join.jpg',
+          imageAlt: 'Vorschau des Kanban-Task-Managers Join',
+        },
+      ],
+    },
     testimonials: [],
   },
   en: {
@@ -122,7 +162,47 @@ export const PORTFOLIO_CONTENT: Readonly<Record<Language, PortfolioCopy>> = {
         'I am open to new technologies and look forward to expanding my knowledge for future projects.',
       cta: "Let's Talk",
     },
-    projects: [],
+    projects: {
+      label: 'Portfolio',
+      title: 'Featured Projects',
+      intro:
+        'Explore a selection of my projects and try the applications directly.',
+      aboutLabel: 'What is this project about',
+      technologiesLabel: 'Technologies I have used',
+      learnedLabel: 'What I have learned',
+      liveLabel: 'Live test',
+      githubLabel: 'GitHub',
+      closeLabel: 'Close project window',
+      comingSoonLabel: 'Coming soon',
+      nextLabel: 'Next project',
+      items: [
+        {
+          number: '01',
+          title: 'El Pollo Loco',
+          description:
+            'An object-oriented jump-and-run game in which Pepe collects coins and bottles and fights chickens as well as a final boss.',
+          learned:
+            'I combined classes, inheritance, animations, keyboard and touch controls, and sound in a complete game.',
+          technologies: ['HTML', 'CSS', 'JavaScript'],
+          liveUrl: 'https://ahmadataya.developerakademie.net/El%20Pollo%20Loco/',
+          githubUrl: 'https://github.com/Qualle1980/El-Pollo-Loco',
+          image: 'assets/images/projects/el-pollo-loco.png',
+          imageAlt: 'Start screen of the El Pollo Loco game',
+        },
+        {
+          number: '02',
+          title: 'Join',
+          placeholder: true,
+          description:
+            'A Kanban task manager for clearly organizing tasks in To do, In progress, Await feedback and Done.',
+          learned:
+            'This project will be implemented later in the course. The live and GitHub links will be added afterwards.',
+          technologies: ['Angular', 'TypeScript', 'HTML', 'SCSS', 'Supabase'],
+          image: 'assets/images/projects/join.jpg',
+          imageAlt: 'Preview of the Join Kanban task manager',
+        },
+      ],
+    },
     testimonials: [],
   },
 };
