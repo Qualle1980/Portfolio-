@@ -2,7 +2,7 @@
 
 :host {
   display: block;
-  padding-block: 6.25rem;
+  padding: 0;
 }
 
 .skills {
@@ -20,7 +20,7 @@
   }
 
   &__card {
-    margin-top: 1rem;
+    margin-top: 1.25rem;
     padding: 2rem;
     border: 0.0625rem solid $color-primary;
     border-radius: $radius-large;
@@ -44,7 +44,7 @@
 
   &__prompt {
     margin-top: 2rem;
-    font-family: $font-family-heading;
+    font-family: $font-family-accent;
     font-size: $font-size-subheading-mobile;
     font-weight: $font-weight-bold;
     line-height: 1.2;
@@ -68,14 +68,17 @@
   }
 
   &__grid {
+    align-self: start;
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    row-gap: 3rem;
-    margin-top: 3rem;
+    grid-template-columns: repeat(3, 6.5rem);
+    column-gap: 1rem;
+    row-gap: 2rem;
   }
 
   &__technology {
     @include flex(center, flex-start, 0.75rem, column);
+    width: 6.5rem;
+    height: 6.875rem;
     min-width: 0;
     font-family: $font-family-heading;
     font-size: $font-size-body-mobile;
@@ -101,7 +104,7 @@
     }
 
     &__card {
-      min-height: 31rem;
+      min-height: 31.4375rem;
       margin-top: 1.25rem;
     }
 
@@ -123,19 +126,15 @@
     }
 
     &__grid {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      row-gap: 4rem;
+      grid-template-columns: repeat(4, 6.5rem);
+      column-gap: 4.5rem;
+      row-gap: 2.5rem;
       margin-top: 3rem;
     }
 
     &__technology {
+      height: 7.25rem;
       font-size: $font-size-body-desktop;
     }
-  }
-}
-
-@include respond-from(tablet) {
-  :host {
-    padding-block: 9rem;
   }
 }
