@@ -55,6 +55,14 @@ export class Header implements AfterViewInit, OnDestroy {
   protected navigateTo(fragment: string): void {
     this.activeSection.set(fragment);
     this.closeMenu();
+    window.setTimeout(() => {
+      const section = document.getElementById(fragment);
+      if (!section) return;
+
+      const headerOffset = 114;
+      const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({ top: sectionTop - headerOffset, behavior: 'smooth' });
+    }, 50);
   }
 
   ngAfterViewInit(): void {

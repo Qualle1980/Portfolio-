@@ -61,10 +61,15 @@ describe('Projects', () => {
     element.querySelector<HTMLButtonElement>('.projects__trigger')?.click();
     fixture.detectChanges();
 
+    expect(document.documentElement.style.overflow).toBe('hidden');
+    expect(document.body.style.overflow).toBe('hidden');
+
     document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
     fixture.detectChanges();
 
     expect(element.querySelector('[role="dialog"]')).toBeNull();
+    expect(document.documentElement.style.overflow).toBe('');
+    expect(document.body.style.overflow).toBe('');
   });
 
   it('renders the German project copy after changing the language', () => {

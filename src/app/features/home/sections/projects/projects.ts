@@ -3,9 +3,11 @@ import {
   Component,
   HostListener,
   computed,
+  effect,
   inject,
   signal,
 } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import { Project } from '../../../../shared/models/portfolio.models';
 import { PortfolioContent } from '../../../../shared/services/portfolio-content';
 
@@ -19,9 +21,22 @@ import { PortfolioContent } from '../../../../shared/services/portfolio-content'
 })
 export class Projects {
   private readonly portfolioContent = inject(PortfolioContent);
+  private readonly document = inject(DOCUMENT);
 
   protected readonly projects = computed(() => this.portfolioContent.currentContent().projects);
   protected readonly selectedProject = signal<Project | null>(null);
+  private readonly lockBackgroundScroll = effect((onCleanup) => {
+    if (!this.selectedProject()) return;
+
+    const previousDocumentOverflow = this.document.documentElement.style.overflow;
+    const previousOverflow = this.document.body.style.overflow;
+    this.document.documentElement.style.overflow = 'hidden';
+    this.document.body.style.overflow = 'hidden';
+    onCleanup(() => {
+      this.document.documentElement.style.overflow = previousDocumentOverflow;
+      this.document.body.style.overflow = previousOverflow;
+    });
+  });
 
   protected openProject(project: Project): void {
     this.selectedProject.set(project);

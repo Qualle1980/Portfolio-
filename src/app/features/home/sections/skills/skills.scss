@@ -30,7 +30,7 @@
 
   &__title {
     color: $color-primary;
-    font-size: clamp(2.75rem, 14.35vw, $font-size-section-mobile);
+    font-size: 3rem;
     line-height: 1;
     white-space: nowrap;
   }
@@ -73,6 +73,7 @@
     grid-template-columns: repeat(3, 6.5rem);
     column-gap: 1rem;
     row-gap: 2rem;
+    margin-top: 2.5rem;
   }
 
   &__technology {
