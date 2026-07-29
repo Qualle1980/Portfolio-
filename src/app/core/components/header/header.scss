@@ -7,11 +7,17 @@
 }
 
 .header {
-  position: absolute;
+  position: fixed;
   z-index: 20;
   inset: 0 0 auto;
   height: 6.125rem;
   padding-top: 2rem;
+  background-color: rgba($color-background-deep, 0.94);
+  backdrop-filter: blur(0.5rem);
+
+  &--scrolled {
+    background-color: rgba($color-background-deep, 0.6);
+  }
 
   &__inner {
     @include page-container;

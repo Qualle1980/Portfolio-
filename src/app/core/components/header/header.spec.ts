@@ -54,6 +54,20 @@ describe('Header', () => {
 
     expect(getMenuButton(fixture.nativeElement).getAttribute('aria-expanded')).toBe('false');
   });
+
+  it('makes the header background more transparent after scrolling', () => {
+    const fixture = TestBed.createComponent(Header);
+    fixture.detectChanges();
+
+    Object.defineProperty(window, 'scrollY', { configurable: true, value: 100 });
+    window.dispatchEvent(new Event('scroll'));
+    fixture.detectChanges();
+
+    const header = fixture.nativeElement.querySelector('.header') as HTMLElement;
+    expect(header.classList.contains('header--scrolled')).toBe(true);
+
+    Object.defineProperty(window, 'scrollY', { configurable: true, value: 0 });
+  });
 });
 
 function getMenuButton(element: HTMLElement): HTMLButtonElement {

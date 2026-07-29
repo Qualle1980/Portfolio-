@@ -19,6 +19,7 @@ import { PortfolioContent } from '../../../shared/services/portfolio-content';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '(document:keydown.escape)': 'closeMenu()',
+    '(window:scroll)': 'updateScrollState()',
   },
 })
 export class Header implements AfterViewInit, OnDestroy {
@@ -27,6 +28,7 @@ export class Header implements AfterViewInit, OnDestroy {
 
   protected readonly language = this.portfolioContent.language;
   protected readonly isMenuOpen = signal(false);
+  protected readonly isScrolled = signal(false);
   protected readonly activeSection = signal('');
   protected readonly navigation = computed(() => this.portfolioContent.currentContent().navigation);
   protected readonly menuLabel = computed(() =>
@@ -44,6 +46,10 @@ export class Header implements AfterViewInit, OnDestroy {
 
   protected closeMenu(): void {
     this.isMenuOpen.set(false);
+  }
+
+  protected updateScrollState(): void {
+    this.isScrolled.set(window.scrollY > 0);
   }
 
   protected navigateTo(fragment: string): void {
