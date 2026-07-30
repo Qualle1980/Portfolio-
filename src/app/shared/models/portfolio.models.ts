@@ -100,6 +100,30 @@ export interface TestimonialsCopy {
   readonly items: readonly Testimonial[];
 }
 
+export interface ContactCopy {
+  readonly label: string;
+  readonly title: string;
+  readonly subtitle: string;
+  readonly intro: string;
+  readonly prompt: string;
+  readonly promptLink: string;
+  readonly nameLabel: string;
+  readonly namePlaceholder: string;
+  readonly nameError: string;
+  readonly emailLabel: string;
+  readonly emailPlaceholder: string;
+  readonly emailError: string;
+  readonly messageLabel: string;
+  readonly messagePlaceholder: string;
+  readonly messageError: string;
+  readonly privacyPrefix: string;
+  readonly privacyLink: string;
+  readonly privacySuffix: string;
+  readonly privacyError: string;
+  readonly submitLabel: string;
+  readonly readyMessage: string;
+}
+
 export interface PortfolioCopy {
   readonly navigation: readonly NavigationItem[];
   readonly hero: HeroCopy;
@@ -107,4 +131,5 @@ export interface PortfolioCopy {
   readonly skills: SkillsCopy;
   readonly projects: ProjectsCopy;
   readonly testimonials: TestimonialsCopy;
+  readonly contact: ContactCopy;
 }

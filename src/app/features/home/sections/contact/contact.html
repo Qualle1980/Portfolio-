@@ -1,1 +1,86 @@
-<p>contact works!</p>
+<section class="contact" aria-labelledby="contact-title">
+  <div class="contact__inner">
+    <div class="contact__intro">
+      <p class="contact__label">{{ contact().label }}</p>
+      <h2 id="contact-title" class="contact__title">{{ contact().title }}</h2>
+      <h3 class="contact__subtitle">{{ contact().subtitle }}</h3>
+      <p class="contact__copy">{{ contact().intro }}</p>
+      <p class="contact__prompt">
+        {{ contact().prompt }}
+        <a href="#contact-form">{{ contact().promptLink }}</a>
+      </p>
+    </div>
+
+    <form
+      id="contact-form"
+      class="contact-form"
+      [formGroup]="contactForm"
+      (ngSubmit)="submitForm()"
+      novalidate
+    >
+      <div class="contact-form__field" [class.contact-form__field--error]="isInvalid('name')">
+        <label for="contact-name">{{ contact().nameLabel }}</label>
+        <input
+          id="contact-name"
+          type="text"
+          formControlName="name"
+          [placeholder]="isInvalid('name') ? contact().nameError : contact().namePlaceholder"
+          autocomplete="name"
+        />
+      </div>
+
+      <div class="contact-form__field" [class.contact-form__field--error]="isInvalid('email')">
+        <label for="contact-email">{{ contact().emailLabel }}</label>
+        <input
+          id="contact-email"
+          type="email"
+          formControlName="email"
+          [placeholder]="isInvalid('email') ? contact().emailError : contact().emailPlaceholder"
+          autocomplete="email"
+        />
+      </div>
+
+      <div class="contact-form__field" [class.contact-form__field--error]="isInvalid('message')">
+        <label for="contact-message">{{ contact().messageLabel }}</label>
+        <textarea
+          id="contact-message"
+          formControlName="message"
+          [placeholder]="
+            isInvalid('message') ? contact().messageError : contact().messagePlaceholder
+          "
+          autocomplete="off"
+        ></textarea>
+      </div>
+
+      <div
+        class="contact-form__privacy"
+        [class.contact-form__privacy--error]="isInvalid('privacy')"
+      >
+        <label class="contact-form__privacy-label" for="contact-privacy">
+          <input id="contact-privacy" type="checkbox" formControlName="privacy" />
+          <span class="contact-form__checkbox" aria-hidden="true"></span>
+          <span>
+            {{ contact().privacyPrefix }}
+            <a routerLink="/privacy-policy">{{ contact().privacyLink }}</a>
+            {{ contact().privacySuffix }}
+          </span>
+        </label>
+        <p class="contact-form__error" aria-live="polite">
+          @if (isInvalid('privacy')) {
+            {{ contact().privacyError }}
+          }
+        </p>
+
+        <button class="button contact-form__submit" type="submit">
+          <span>{{ contact().submitLabel }}</span>
+        </button>
+
+        <p class="contact-form__status" aria-live="polite">
+          @if (submitStatus() === 'ready') {
+            {{ contact().readyMessage }}
+          }
+        </p>
+      </div>
+    </form>
+  </div>
+</section>
