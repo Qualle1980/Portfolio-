@@ -1,1 +1,62 @@
-<p>testimonials works!</p>
+<section class="testimonials" aria-labelledby="testimonials-title">
+  <h2 id="testimonials-title" class="testimonials__title">
+    {{ testimonials().title }}
+  </h2>
+
+  <div class="testimonials__viewport">
+    <div
+      class="testimonials__track"
+      [class.testimonials__track--next]="slideDirection() === 'next'"
+      [class.testimonials__track--previous]="slideDirection() === 'previous'"
+      (animationend)="finishSlide()"
+    >
+      @for (testimonial of visibleTestimonials(); track testimonial.role; let index = $index) {
+        <article
+          class="testimonials__card"
+          [class.testimonials__card--active]="index === 1"
+          [attr.aria-hidden]="index !== 1"
+        >
+          <span class="testimonials__quote-mark" aria-hidden="true">“</span>
+          <p class="testimonials__quote">{{ testimonial.quote }}</p>
+          <footer class="testimonials__author">
+            <span aria-hidden="true"></span>
+            <p>{{ testimonial.author }} · {{ testimonial.role }}</p>
+          </footer>
+        </article>
+      }
+    </div>
+  </div>
+
+  <div class="testimonials__controls">
+    <button
+      class="testimonials__arrow"
+      type="button"
+      [attr.aria-label]="testimonials().previousLabel"
+      (click)="showPrevious()"
+    >
+      ←
+    </button>
+
+    <div class="testimonials__dots">
+      @for (testimonial of testimonials().items; track testimonial.role; let index = $index) {
+        <button
+          class="testimonials__dot"
+          type="button"
+          [class.testimonials__dot--active]="activeIndex() === index"
+          [attr.aria-label]="testimonial.role"
+          [attr.aria-pressed]="activeIndex() === index"
+          (click)="showTestimonial(index)"
+        ></button>
+      }
+    </div>
+
+    <button
+      class="testimonials__arrow"
+      type="button"
+      [attr.aria-label]="testimonials().nextLabel"
+      (click)="showNext()"
+    >
+      →
+    </button>
+  </div>
+</section>

@@ -93,11 +93,18 @@ export interface Testimonial {
   readonly quote: string;
 }
 
+export interface TestimonialsCopy {
+  readonly title: string;
+  readonly previousLabel: string;
+  readonly nextLabel: string;
+  readonly items: readonly Testimonial[];
+}
+
 export interface PortfolioCopy {
   readonly navigation: readonly NavigationItem[];
   readonly hero: HeroCopy;
   readonly about: AboutCopy;
   readonly skills: SkillsCopy;
   readonly projects: ProjectsCopy;
-  readonly testimonials: readonly Testimonial[];
+  readonly testimonials: TestimonialsCopy;
 }

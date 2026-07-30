@@ -108,7 +108,28 @@ export const PORTFOLIO_CONTENT: Readonly<Record<Language, PortfolioCopy>> = {
         },
       ],
     },
-    testimonials: [],
+    testimonials: {
+      title: 'Was meine Kollegen über mich sagen',
+      previousLabel: 'Vorherige Referenz',
+      nextLabel: 'Nächste Referenz',
+      items: [
+        {
+          quote: 'Eine persönliche Referenz wird nach Abschluss eines gemeinsamen Projekts ergänzt.',
+          author: 'Referenz ausstehend',
+          role: 'Projektfeedback',
+        },
+        {
+          quote: 'Hier wird später authentisches Feedback aus der Zusammenarbeit veröffentlicht.',
+          author: 'Referenz ausstehend',
+          role: 'Kollegiales Feedback',
+        },
+        {
+          quote: 'Dieser Platz ist für eine weitere echte Rückmeldung reserviert.',
+          author: 'Referenz ausstehend',
+          role: 'Kurs- oder Projektfeedback',
+        },
+      ],
+    },
   },
   en: {
     navigation: [
@@ -203,6 +224,27 @@ export const PORTFOLIO_CONTENT: Readonly<Record<Language, PortfolioCopy>> = {
         },
       ],
     },
-    testimonials: [],
+    testimonials: {
+      title: 'What my colleagues say about me',
+      previousLabel: 'Previous reference',
+      nextLabel: 'Next reference',
+      items: [
+        {
+          quote: 'A personal reference will be added after completing a project together.',
+          author: 'Reference pending',
+          role: 'Project feedback',
+        },
+        {
+          quote: 'Authentic feedback from a future collaboration will be published here.',
+          author: 'Reference pending',
+          role: 'Colleague feedback',
+        },
+        {
+          quote: 'This space is reserved for another genuine testimonial.',
+          author: 'Reference pending',
+          role: 'Course or project feedback',
+        },
+      ],
+    },
   },
 };

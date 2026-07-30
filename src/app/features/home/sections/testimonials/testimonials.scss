@@ -1,0 +1,170 @@
+@use 'abstracts' as *;
+
+:host {
+  display: block;
+  padding-block: 9rem;
+  overflow: hidden;
+}
+
+.testimonials {
+  color: $color-text;
+
+  &__title {
+    width: min(calc(100% - 2rem), 37.1875rem);
+    margin-inline: auto;
+    color: $color-primary;
+    font-family: $font-family-heading;
+    font-size: 1.5rem;
+    line-height: 1.3;
+    text-align: center;
+  }
+
+  &__viewport {
+    width: 100%;
+    margin-top: 3rem;
+    overflow: hidden;
+  }
+
+  &__track {
+    --testimonial-gap: 0.5rem;
+
+    display: grid;
+    grid-template-columns: repeat(3, min(91.8vw, 32.5rem));
+    align-items: center;
+    gap: var(--testimonial-gap);
+    width: max-content;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+
+    &--next {
+      animation: slide-testimonial-next 500ms ease-out;
+    }
+
+    &--previous {
+      animation: slide-testimonial-previous 500ms ease-out;
+    }
+  }
+
+  &__card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 17.125rem;
+    padding: 3rem 2.5rem 2.5rem;
+    border: 0.0625rem solid rgba($color-primary, 0.5);
+    border-radius: $radius-large;
+    background: rgba($color-surface, 0.72);
+    opacity: 0.5;
+    transform: scale(0.92);
+    transition:
+      opacity $transition-base,
+      transform $transition-base,
+      background-color $transition-base;
+
+    &--active {
+      background: rgba($color-surface-strong, 0.72);
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  &__quote-mark {
+    position: absolute;
+    top: -1.5rem;
+    left: -0.75rem;
+    color: $color-text;
+    font-family: $font-family-display;
+    font-size: 7.5rem;
+    font-weight: $font-weight-bold;
+    line-height: 1;
+  }
+
+  &__quote {
+    color: $color-text-muted;
+    font-size: 1rem;
+    line-height: 1.2;
+  }
+
+  &__author {
+    @include flex(center, flex-end, 1rem);
+    margin-top: 2rem;
+    color: $color-text-muted;
+    font-size: 0.875rem;
+
+    > span {
+      flex: 1;
+      height: 0.0625rem;
+      background: rgba($color-text, 0.5);
+    }
+  }
+
+  &__controls {
+    @include flex(center, center, 1rem);
+    margin-top: 2rem;
+  }
+
+  &__arrow,
+  &__dot {
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  &__arrow {
+    color: $color-text-muted;
+    font-size: 1.5rem;
+
+    &:hover,
+    &:focus-visible {
+      color: $color-primary;
+    }
+  }
+
+  &__dots {
+    @include flex(center, center, 0.75rem);
+  }
+
+  &__dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    padding: 0;
+    border-radius: 50%;
+    background: $color-text;
+
+    &--active {
+      background: $color-primary;
+    }
+  }
+
+  @include respond-from(tablet) {
+    &__title {
+      font-size: 2rem;
+    }
+
+    &__track {
+      --testimonial-gap: 3rem;
+    }
+  }
+}
+
+@keyframes slide-testimonial-next {
+  from {
+    transform: translateX(calc(-50% + min(91.8vw, 32.5rem) + var(--testimonial-gap)));
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes slide-testimonial-previous {
+  from {
+    transform: translateX(calc(-50% - min(91.8vw, 32.5rem) - var(--testimonial-gap)));
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
