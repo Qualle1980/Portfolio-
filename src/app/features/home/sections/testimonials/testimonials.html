@@ -29,12 +29,14 @@
 
   <div class="testimonials__controls">
     <button
-      class="testimonials__arrow"
+      class="testimonials__arrow testimonials__arrow--previous"
       type="button"
       [attr.aria-label]="testimonials().previousLabel"
       (click)="showPrevious()"
     >
-      ←
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20 12H4m0 0 7-7m-7 7 7 7" />
+      </svg>
     </button>
 
     <div class="testimonials__dots">
@@ -51,12 +53,14 @@
     </div>
 
     <button
-      class="testimonials__arrow"
+      class="testimonials__arrow testimonials__arrow--next"
       type="button"
       [attr.aria-label]="testimonials().nextLabel"
       (click)="showNext()"
     >
-      →
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4 12h16m0 0-7-7m7 7-7 7" />
+      </svg>
     </button>
   </div>
 </section>

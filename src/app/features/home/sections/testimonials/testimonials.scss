@@ -20,16 +20,39 @@
   }
 
   &__viewport {
+    position: relative;
     width: 100%;
     margin-top: 3rem;
-    overflow: hidden;
+    overflow-x: clip;
+    overflow-y: visible;
+
+    &::before,
+    &::after {
+      position: absolute;
+      z-index: 2;
+      top: 0;
+      bottom: 0;
+      width: min(18vw, 16rem);
+      pointer-events: none;
+      content: '';
+    }
+
+    &::before {
+      left: 0;
+      background: linear-gradient(90deg, $color-background 0%, rgba($color-background, 0) 100%);
+    }
+
+    &::after {
+      right: 0;
+      background: linear-gradient(270deg, $color-background 0%, rgba($color-background, 0) 100%);
+    }
   }
 
   &__track {
     --testimonial-gap: 0.5rem;
 
     display: grid;
-    grid-template-columns: repeat(3, min(91.8vw, 32.5rem));
+    grid-template-columns: repeat(3, min(91.8vw, 39.5rem));
     align-items: center;
     gap: var(--testimonial-gap);
     width: max-content;
@@ -55,7 +78,7 @@
     padding: 3rem 2.5rem 2.5rem;
     border: 0.0625rem solid rgba($color-primary, 0.5);
     border-radius: $radius-large;
-    background: rgba($color-surface, 0.72);
+    background: rgba($color-primary, 0.1);
     opacity: 0.5;
     transform: scale(0.92);
     transition:
@@ -64,7 +87,8 @@
       background-color $transition-base;
 
     &--active {
-      background: rgba($color-surface-strong, 0.72);
+      border-color: $color-primary;
+      background: rgba($color-primary, 0.3);
       opacity: 1;
       transform: scale(1);
     }
@@ -79,6 +103,11 @@
     font-size: 7.5rem;
     font-weight: $font-weight-bold;
     line-height: 1;
+    opacity: 0;
+  }
+
+  &__card--active &__quote-mark {
+    opacity: 1;
   }
 
   &__quote {
@@ -101,7 +130,7 @@
   }
 
   &__controls {
-    @include flex(center, center, 1rem);
+    @include flex(center, center, 1.25rem);
     margin-top: 2rem;
   }
 
@@ -113,17 +142,43 @@
   }
 
   &__arrow {
+    @include flex(center, center);
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
     color: $color-text-muted;
-    font-size: 1.5rem;
+    transition:
+      color $transition-base,
+      transform $transition-base;
+
+    svg {
+      width: 2.5rem;
+      height: 2.5rem;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.25;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
 
     &:hover,
     &:focus-visible {
       color: $color-primary;
     }
+
+    &--previous:hover,
+    &--previous:focus-visible {
+      transform: translateX(-0.25rem);
+    }
+
+    &--next:hover,
+    &--next:focus-visible {
+      transform: translateX(0.25rem);
+    }
   }
 
   &__dots {
-    @include flex(center, center, 0.75rem);
+    @include flex(center, center, 1.25rem);
   }
 
   &__dot {
@@ -144,14 +199,43 @@
     }
 
     &__track {
-      --testimonial-gap: 3rem;
+      --testimonial-gap: 4rem;
+    }
+
+    &__card {
+      min-height: 17.125rem;
+      padding: 3rem 2.5rem 2.5rem;
+    }
+
+    &__quote-mark {
+      top: 0;
+      left: -3.6875rem;
+      width: 5.567633rem;
+      height: 4rem;
+      font-size: 15.5rem;
+      line-height: 0.55;
+      transform: scaleX(0.94);
+      transform-origin: top left;
+    }
+
+    &__quote {
+      color: $color-text;
+      font-size: 1.25rem;
+    }
+
+    &__author {
+      font-size: 1rem;
+    }
+
+    &__controls {
+      margin-top: 4rem;
     }
   }
 }
 
 @keyframes slide-testimonial-next {
   from {
-    transform: translateX(calc(-50% + min(91.8vw, 32.5rem) + var(--testimonial-gap)));
+    transform: translateX(calc(-50% + min(91.8vw, 39.5rem) + var(--testimonial-gap)));
   }
 
   to {
@@ -161,7 +245,7 @@
 
 @keyframes slide-testimonial-previous {
   from {
-    transform: translateX(calc(-50% - min(91.8vw, 32.5rem) - var(--testimonial-gap)));
+    transform: translateX(calc(-50% - min(91.8vw, 39.5rem) - var(--testimonial-gap)));
   }
 
   to {
