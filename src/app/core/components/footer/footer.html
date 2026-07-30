@@ -1,1 +1,25 @@
-<p>footer works!</p>
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__identity">
+      <a class="footer__brand" routerLink="/" aria-label="Ahmad Ataya – Startseite">
+        <span class="footer__monogram" aria-hidden="true">
+          <span>A</span>
+          <span>A</span>
+        </span>
+        <span class="footer__name">Ahmad<br />Ataya</span>
+      </a>
+
+      <p>{{ footer().role }}</p>
+      <p>{{ footer().location }}</p>
+    </div>
+
+    <p class="footer__copyright">© Ahmad Ataya {{ currentYear }}</p>
+
+    <nav class="footer__navigation" aria-label="Footer-Navigation">
+      <a [href]="githubUrl" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a [href]="linkedinUrl" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a routerLink="/" fragment="contact">{{ footer().emailLabel }}</a>
+      <a routerLink="/impressum">{{ footer().legalLabel }}</a>
+    </nav>
+  </div>
+</footer>

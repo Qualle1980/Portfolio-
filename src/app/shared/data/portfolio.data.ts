@@ -154,6 +154,12 @@ export const PORTFOLIO_CONTENT: Readonly<Record<Language, PortfolioCopy>> = {
       submitLabel: 'Sag Hallo ;)',
       readyMessage: 'Das Formular ist geprüft. Der E-Mail-Versand wird vor dem Hosting verbunden.',
     },
+    footer: {
+      role: 'Webentwickler',
+      location: 'Ludwigshafen, Deutschland',
+      emailLabel: 'E-Mail',
+      legalLabel: 'Impressum',
+    },
   },
   en: {
     navigation: [
@@ -293,6 +299,12 @@ export const PORTFOLIO_CONTENT: Readonly<Record<Language, PortfolioCopy>> = {
       privacyError: 'Please accept the privacy policy.',
       submitLabel: 'Say Hello ;)',
       readyMessage: 'The form is validated. Email delivery will be connected before hosting.',
+    },
+    footer: {
+      role: 'Web Developer',
+      location: 'Ludwigshafen, Germany',
+      emailLabel: 'Email',
+      legalLabel: 'Legal Notice',
     },
   },
 };

@@ -2,7 +2,11 @@
 
 :host {
   display: block;
-  padding-block: 9rem;
+  padding: 9rem 0 2.5rem;
+
+  @include respond-from(desktop) {
+    padding-bottom: 4rem;
+  }
 }
 
 .contact {
@@ -263,8 +267,7 @@
   }
 
   @include respond-from(desktop) {
-    width: max-content;
-    min-width: 38.5rem;
+    width: 38.5rem;
 
     &__field {
       height: 8.1875rem;
@@ -288,6 +291,10 @@
 
     &__privacy-label {
       white-space: nowrap;
+
+      &--multiline {
+        white-space: normal;
+      }
     }
   }
 }

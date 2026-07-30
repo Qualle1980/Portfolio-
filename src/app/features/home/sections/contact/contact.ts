@@ -16,6 +16,7 @@ export class Contact {
   private readonly portfolioContent = inject(PortfolioContent);
 
   protected readonly contact = computed(() => this.portfolioContent.currentContent().contact);
+  protected readonly language = this.portfolioContent.language;
   protected readonly submitStatus = signal<'idle' | 'ready'>('idle');
   protected readonly contactForm = this.formBuilder.nonNullable.group({
     name: ['', [Validators.required, Validators.minLength(2)]],

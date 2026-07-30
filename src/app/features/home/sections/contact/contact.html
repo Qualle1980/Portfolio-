@@ -56,7 +56,11 @@
         class="contact-form__privacy"
         [class.contact-form__privacy--error]="isInvalid('privacy')"
       >
-        <label class="contact-form__privacy-label" for="contact-privacy">
+        <label
+          class="contact-form__privacy-label"
+          [class.contact-form__privacy-label--multiline]="language() === 'de'"
+          for="contact-privacy"
+        >
           <input id="contact-privacy" type="checkbox" formControlName="privacy" />
           <span class="contact-form__checkbox" aria-hidden="true"></span>
           <span>

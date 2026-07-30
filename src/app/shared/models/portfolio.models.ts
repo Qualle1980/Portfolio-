@@ -124,6 +124,13 @@ export interface ContactCopy {
   readonly readyMessage: string;
 }
 
+export interface FooterCopy {
+  readonly role: string;
+  readonly location: string;
+  readonly emailLabel: string;
+  readonly legalLabel: string;
+}
+
 export interface PortfolioCopy {
   readonly navigation: readonly NavigationItem[];
   readonly hero: HeroCopy;
@@ -132,4 +139,5 @@ export interface PortfolioCopy {
   readonly projects: ProjectsCopy;
   readonly testimonials: TestimonialsCopy;
   readonly contact: ContactCopy;
+  readonly footer: FooterCopy;
 }

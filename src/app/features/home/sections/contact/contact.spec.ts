@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
+import { PortfolioContent } from '../../../../shared/services/portfolio-content';
 import { Contact } from './contact';
 
 describe('Contact', () => {
@@ -48,5 +49,17 @@ describe('Contact', () => {
     component.submitForm();
 
     expect(component.submitStatus()).toBe('ready');
+  });
+
+  it('allows the longer German privacy text to wrap', () => {
+    const fixture = TestBed.createComponent(Contact);
+    TestBed.inject(PortfolioContent).setLanguage('de');
+    fixture.detectChanges();
+
+    const privacyLabel = fixture.nativeElement.querySelector(
+      '.contact-form__privacy-label',
+    ) as HTMLLabelElement;
+
+    expect(privacyLabel.classList).toContain('contact-form__privacy-label--multiline');
   });
 });
