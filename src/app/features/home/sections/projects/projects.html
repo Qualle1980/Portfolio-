@@ -6,7 +6,13 @@
 
     <ul class="projects__list">
       @for (project of projects().items; track project.title) {
-        <li class="projects__item">
+        <li
+          class="projects__item"
+          (mouseenter)="showProjectPreview(project)"
+          (mouseleave)="hideProjectPreview(project)"
+          (focusin)="showProjectPreview(project)"
+          (focusout)="hideProjectPreview(project)"
+        >
           <button class="projects__trigger" type="button" (click)="openProject(project)">
             <span class="projects__summary">
               <span class="projects__name">{{ project.title }}</span>
@@ -24,6 +30,22 @@
               </span>
             </span>
           </button>
+
+          <div
+            class="projects__preview"
+            [class.projects__preview--visible]="previewProject() === project"
+            [class.projects__preview--align-top]="project.imagePosition === 'top'"
+            aria-hidden="true"
+          >
+            <img
+              [src]="project.image"
+              alt=""
+              width="520"
+              height="320"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
         </li>
       }
     </ul>

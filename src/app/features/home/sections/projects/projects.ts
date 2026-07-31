@@ -25,6 +25,8 @@ export class Projects {
 
   protected readonly projects = computed(() => this.portfolioContent.currentContent().projects);
   protected readonly selectedProject = signal<Project | null>(null);
+  protected readonly previewProject = signal<Project | null>(null);
+  private readonly suppressedPreview = signal<Project | null>(null);
   private readonly lockBackgroundScroll = effect((onCleanup) => {
     if (!this.selectedProject()) return;
 
@@ -44,6 +46,22 @@ export class Projects {
 
   protected closeProject(): void {
     this.selectedProject.set(null);
+  }
+
+  protected showProjectPreview(project: Project): void {
+    if (this.suppressedPreview() === project) return;
+
+    this.previewProject.set(project);
+  }
+
+  protected hideProjectPreview(project: Project): void {
+    if (this.previewProject() === project) {
+      this.previewProject.set(null);
+    }
+
+    if (this.suppressedPreview() === project) {
+      this.suppressedPreview.set(null);
+    }
   }
 
   protected showNextProject(): void {
@@ -70,6 +88,13 @@ export class Projects {
 
   @HostListener('document:keydown.escape')
   protected closeProjectWithEscape(): void {
+    const project = this.selectedProject() ?? this.previewProject();
+
+    if (project) {
+      this.suppressedPreview.set(project);
+    }
+
+    this.previewProject.set(null);
     this.closeProject();
   }
 }

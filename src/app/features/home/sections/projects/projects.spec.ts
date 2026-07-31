@@ -60,6 +60,45 @@ describe('Projects', () => {
     expect(dialog?.querySelectorAll('a').length).toBe(0);
   });
 
+  it('renders a matching hover preview for every project', () => {
+    const fixture = TestBed.createComponent(Projects);
+    fixture.detectChanges();
+
+    const element = fixture.nativeElement as HTMLElement;
+    const previews = element.querySelectorAll<HTMLImageElement>('.projects__preview img');
+
+    expect(previews.length).toBe(3);
+    expect(previews[0].src).toContain('assets/images/projects/join.svg');
+    expect(previews[1].src).toContain('assets/images/projects/el-pollo-loco.png');
+    expect(previews[2].src).toContain('assets/images/projects/da-bubble.png');
+  });
+
+  it('keeps the hover preview closed after Escape until the project is left', () => {
+    const fixture = TestBed.createComponent(Projects);
+    fixture.detectChanges();
+
+    const element = fixture.nativeElement as HTMLElement;
+    const projectItem = element.querySelector<HTMLElement>('.projects__item');
+    const preview = projectItem?.querySelector<HTMLElement>('.projects__preview');
+
+    projectItem?.dispatchEvent(new MouseEvent('mouseenter'));
+    fixture.detectChanges();
+    expect(preview?.classList.contains('projects__preview--visible')).toBe(true);
+
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+    fixture.detectChanges();
+    expect(preview?.classList.contains('projects__preview--visible')).toBe(false);
+
+    projectItem?.dispatchEvent(new MouseEvent('mouseenter'));
+    fixture.detectChanges();
+    expect(preview?.classList.contains('projects__preview--visible')).toBe(false);
+
+    projectItem?.dispatchEvent(new MouseEvent('mouseleave'));
+    projectItem?.dispatchEvent(new MouseEvent('mouseenter'));
+    fixture.detectChanges();
+    expect(preview?.classList.contains('projects__preview--visible')).toBe(true);
+  });
+
   it('opens DA Bubble as the third project with its preview and inactive buttons', () => {
     const fixture = TestBed.createComponent(Projects);
     fixture.detectChanges();
