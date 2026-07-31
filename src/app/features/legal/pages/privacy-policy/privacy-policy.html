@@ -1,1 +1,43 @@
-<p>privacy-policy works!</p>
+<main class="privacy-policy">
+  <div class="privacy-policy__inner">
+    <a class="privacy-policy__back" routerLink="/" [attr.aria-label]="copy().backLabel">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="m15 18-6-6 6-6" />
+      </svg>
+    </a>
+
+    <h1 class="privacy-policy__title">{{ copy().title }}</h1>
+
+    <div class="privacy-policy__content">
+      @for (section of copy().sections; track section.title) {
+        <section class="privacy-policy__section">
+          <h2>{{ section.title }}</h2>
+
+          @if (section.address) {
+            <address>
+              @for (paragraph of section.paragraphs; track $index) {
+                <span>{{ paragraph }}</span>
+              }
+            </address>
+          } @else {
+            @for (paragraph of section.paragraphs; track $index) {
+              <p>{{ paragraph }}</p>
+            }
+          }
+
+          @if (section.links) {
+            <div class="privacy-policy__links">
+              @for (link of section.links; track link.url) {
+                <a [href]="link.url" target="_blank" rel="noopener noreferrer">
+                  {{ link.label }}
+                </a>
+              }
+            </div>
+          }
+        </section>
+      }
+
+      <p class="privacy-policy__date">{{ copy().date }}</p>
+    </div>
+  </div>
+</main>
