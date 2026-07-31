@@ -62,4 +62,15 @@ describe('Contact', () => {
 
     expect(privacyLabel.classList).toContain('contact-form__privacy-label--multiline');
   });
+
+  it('links the privacy text to the configured privacy route', () => {
+    const fixture = TestBed.createComponent(Contact);
+    fixture.detectChanges();
+
+    const privacyLink = fixture.nativeElement.querySelector(
+      '.contact-form__privacy-label a',
+    ) as HTMLAnchorElement;
+
+    expect(privacyLink.getAttribute('href')).toBe('/datenschutz');
+  });
 });

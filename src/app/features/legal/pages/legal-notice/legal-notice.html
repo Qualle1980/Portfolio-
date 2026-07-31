@@ -1,1 +1,34 @@
-<p>legal-notice works!</p>
+<main class="legal-notice">
+  <div class="legal-notice__inner">
+    <a class="legal-notice__back" routerLink="/" [attr.aria-label]="copy().backLabel">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="m15 18-6-6 6-6" />
+      </svg>
+    </a>
+
+    <h1 class="legal-notice__title">{{ copy().title }}</h1>
+
+    <div class="legal-notice__content">
+      @for (section of copy().sections; track section.title) {
+        <section class="legal-notice__section">
+          <h2>{{ section.title }}</h2>
+
+          @if (section.address) {
+            <address>
+              @for (paragraph of section.paragraphs; track $index) {
+                <span>{{ paragraph }}</span>
+              }
+            </address>
+          } @else {
+            @for (paragraph of section.paragraphs; track $index) {
+              <p>{{ paragraph }}</p>
+            }
+          }
+        </section>
+      }
+
+      <p class="legal-notice__contact-note">{{ copy().contactNote }}</p>
+      <p class="legal-notice__date">{{ copy().date }}</p>
+    </div>
+  </div>
+</main>
