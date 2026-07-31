@@ -11,7 +11,11 @@
             <span class="projects__summary">
               <span class="projects__name">{{ project.title }}</span>
               <span class="projects__technologies">
-                @for (technology of project.technologies; track technology; let isLast = $last) {
+                @for (
+                  technology of project.summaryTechnologies ?? project.technologies;
+                  track technology;
+                  let isLast = $last
+                ) {
                   <span>{{ technology }}</span>
                   @if (!isLast) {
                     <span aria-hidden="true">|</span>
@@ -30,7 +34,6 @@
   <div class="project-dialog" (click)="closeProject()">
     <article
       class="project-dialog__card"
-      [class.project-dialog__card--placeholder]="project.placeholder"
       role="dialog"
       aria-modal="true"
       [attr.aria-label]="project.title"
@@ -53,44 +56,53 @@
       <div class="project-dialog__details">
         <section class="project-dialog__section">
           <h4>{{ projects().aboutLabel }}?</h4>
-          @if (!project.placeholder) {
-            <p>{{ project.description }}</p>
-          }
+          <p>{{ project.description }}</p>
         </section>
 
-        @if (!project.placeholder) {
-          <ul class="project-dialog__technologies" [attr.aria-label]="projects().technologiesLabel">
-            @for (technology of project.technologies; track technology) {
-              <li>
-                <img [src]="technologyIcon(technology)" alt="" width="24" height="24" />
-                <span>{{ technology }}</span>
-              </li>
-            }
-          </ul>
+        <ul class="project-dialog__technologies" [attr.aria-label]="projects().technologiesLabel">
+          @for (technology of project.technologies; track technology) {
+            <li>
+              <img [src]="technologyIcon(technology)" alt="" width="24" height="24" />
+              <span>{{ technology }}</span>
+            </li>
+          }
+        </ul>
 
-          <div class="project-dialog__links">
+        <div class="project-dialog__links">
+          @if (project.githubUrl) {
             <a [href]="project.githubUrl" target="_blank" rel="noopener noreferrer">
               {{ projects().githubLabel }} ↗
             </a>
+          } @else {
+            <button type="button" [attr.title]="projects().comingSoonLabel">
+              {{ projects().githubLabel }} ↗
+            </button>
+          }
+
+          @if (project.liveUrl) {
             <a [href]="project.liveUrl" target="_blank" rel="noopener noreferrer">
               {{ projects().liveLabel }} ↗
             </a>
-          </div>
-        }
+          } @else {
+            <button type="button" [attr.title]="projects().comingSoonLabel">
+              {{ projects().liveLabel }} ↗
+            </button>
+          }
+        </div>
       </div>
 
-      @if (!project.placeholder) {
-        <div class="project-dialog__media">
-          <img
-            [src]="project.image"
-            [alt]="project.imageAlt"
-            width="720"
-            height="480"
-            decoding="async"
-          />
-        </div>
-
-      }
+      <div
+        class="project-dialog__media"
+        [class.project-dialog__media--align-top]="project.imagePosition === 'top'"
+      >
+        <img
+          [src]="project.image"
+          [alt]="project.imageAlt"
+          width="520"
+          height="320"
+          decoding="async"
+        />
+      </div>
 
       <button class="project-dialog__next" type="button" (click)="showNextProject()">
         {{ projects().nextLabel }} &nbsp; <span aria-hidden="true">⟶</span>

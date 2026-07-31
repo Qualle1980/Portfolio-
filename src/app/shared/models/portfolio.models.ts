@@ -62,14 +62,15 @@ export interface SkillsCopy {
 export interface Project {
   readonly number: string;
   readonly title: string;
-  readonly placeholder?: boolean;
   readonly description: string;
   readonly learned: string;
   readonly technologies: readonly string[];
+  readonly summaryTechnologies?: readonly string[];
   readonly liveUrl?: string;
   readonly githubUrl?: string;
   readonly image: string;
   readonly imageAlt: string;
+  readonly imagePosition?: 'center' | 'top';
 }
 
 export interface ProjectsCopy {

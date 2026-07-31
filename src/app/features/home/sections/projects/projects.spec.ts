@@ -9,19 +9,22 @@ describe('Projects', () => {
     }).compileComponents();
   });
 
-  it('opens El Pollo Loco in a fixed project dialog with its links', () => {
+  it('renders the projects in the Figma order and opens El Pollo Loco with its links', () => {
     const fixture = TestBed.createComponent(Projects);
     fixture.detectChanges();
 
     const element = fixture.nativeElement as HTMLElement;
-    const projectButtons =
-      element.querySelectorAll<HTMLButtonElement>('.projects__trigger');
+    const projectButtons = element.querySelectorAll<HTMLButtonElement>('.projects__trigger');
 
-    expect(projectButtons.length).toBe(2);
+    expect(projectButtons.length).toBe(3);
     expect(element.textContent).toContain('El Pollo Loco');
     expect(element.textContent).toContain('Join');
+    expect(element.textContent).toContain('DA Bubble');
+    expect(projectButtons[0].textContent).toContain('Join');
+    expect(projectButtons[1].textContent).toContain('El Pollo Loco');
+    expect(projectButtons[2].textContent).toContain('DA Bubble');
 
-    projectButtons[0].click();
+    projectButtons[1].click();
     fixture.detectChanges();
 
     const dialog = element.querySelector<HTMLElement>('[role="dialog"]');
@@ -33,23 +36,51 @@ describe('Projects', () => {
     expect(links?.[1].href).toContain('ahmadataya.developerakademie.net');
   });
 
-  it('opens Join as an empty placeholder dialog', () => {
+  it('opens Join with its Figma copy, preview and inactive project buttons', () => {
     const fixture = TestBed.createComponent(Projects);
     fixture.detectChanges();
 
     const element = fixture.nativeElement as HTMLElement;
-    const projectButtons =
-      element.querySelectorAll<HTMLButtonElement>('.projects__trigger');
+    const projectButtons = element.querySelectorAll<HTMLButtonElement>('.projects__trigger');
 
-    projectButtons[1].click();
+    projectButtons[0].click();
     fixture.detectChanges();
 
     const dialog = element.querySelector<HTMLElement>('[role="dialog"]');
     expect(dialog?.getAttribute('aria-label')).toBe('Join');
-    expect(dialog?.textContent).toContain('02');
+    expect(dialog?.textContent).toContain('01');
     expect(dialog?.textContent).toContain('What is this project about?');
-    expect(dialog?.querySelector('img')).toBeNull();
-    expect(dialog?.querySelector('.project-dialog__section p')).toBeNull();
+    expect(dialog?.textContent).toContain('Task manager inspired by the Kanban System');
+    expect(dialog?.querySelector<HTMLImageElement>('.project-dialog__media img')?.src).toContain(
+      'assets/images/projects/join.svg',
+    );
+    expect(
+      dialog?.querySelectorAll<HTMLButtonElement>('.project-dialog__links button').length,
+    ).toBe(2);
+    expect(dialog?.querySelectorAll('a').length).toBe(0);
+  });
+
+  it('opens DA Bubble as the third project with its preview and inactive buttons', () => {
+    const fixture = TestBed.createComponent(Projects);
+    fixture.detectChanges();
+
+    const element = fixture.nativeElement as HTMLElement;
+    const projectButtons = element.querySelectorAll<HTMLButtonElement>('.projects__trigger');
+
+    projectButtons[2].click();
+    fixture.detectChanges();
+
+    const dialog = element.querySelector<HTMLElement>('[role="dialog"]');
+
+    expect(dialog?.getAttribute('aria-label')).toBe('DA Bubble');
+    expect(dialog?.textContent).toContain('03');
+    expect(dialog?.textContent).toContain('real-time messaging');
+    expect(dialog?.querySelector<HTMLImageElement>('.project-dialog__media img')?.src).toContain(
+      'assets/images/projects/da-bubble.png',
+    );
+    expect(
+      dialog?.querySelectorAll<HTMLButtonElement>('.project-dialog__links button').length,
+    ).toBe(2);
     expect(dialog?.querySelectorAll('a').length).toBe(0);
   });
 
