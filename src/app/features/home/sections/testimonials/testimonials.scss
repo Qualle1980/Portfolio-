@@ -61,11 +61,11 @@
     transform: translateX(-50%);
 
     &--next {
-      animation: slide-testimonial-next 500ms ease-out;
+      animation: slide-testimonial-next 125ms ease-out;
     }
 
     &--previous {
-      animation: slide-testimonial-previous 500ms ease-out;
+      animation: slide-testimonial-previous 125ms ease-out;
     }
   }
 
@@ -187,6 +187,15 @@
     padding: 0;
     border-radius: 50%;
     background: $color-text;
+    transition:
+      background-color $transition-base,
+      transform $transition-base;
+
+    &:hover,
+    &:focus-visible {
+      background: $color-primary;
+      transform: scale(1.35);
+    }
 
     &--active {
       background: $color-primary;

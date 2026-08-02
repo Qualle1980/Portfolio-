@@ -63,6 +63,12 @@
     a {
       color: $color-primary;
       font-weight: $font-weight-bold;
+      transition: color $transition-base;
+
+      &:hover,
+      &:focus-visible {
+        color: $color-text;
+      }
     }
   }
 
@@ -195,6 +201,12 @@
     a {
       color: $color-primary;
       font-family: $font-family-heading;
+      transition: color $transition-base;
+
+      &:hover,
+      &:focus-visible {
+        color: $color-text;
+      }
     }
   }
 
@@ -204,6 +216,9 @@
     height: 1.125rem;
     margin-top: 0.125rem;
     border: 0.125rem solid $color-primary;
+    transition:
+      border-color $transition-fast,
+      background-color $transition-fast;
 
     input:focus-visible + & {
       outline: 0.125rem solid $color-text;
@@ -263,7 +278,7 @@
 
     &:not(:disabled):hover span,
     &:not(:disabled):focus-visible span {
-      animation: contact-button-text-slide 0.65s ease-in-out;
+      animation: contact-button-text-slide 125ms ease-in-out;
     }
   }
 

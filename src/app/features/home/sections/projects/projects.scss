@@ -1,4 +1,5 @@
 @use 'abstracts' as *;
+@use './projects-interactions';
 @use './projects-preview';
 
 :host {
@@ -238,6 +239,9 @@
       line-height: 1;
       background: transparent;
       cursor: pointer;
+      transition:
+        border-color $transition-base,
+        color $transition-base;
     }
 
     a:hover,

@@ -230,6 +230,12 @@
       line-height: 1;
       writing-mode: vertical-rl;
       transform: rotate(180deg);
+      transition: color $transition-base;
+
+      &:hover,
+      &:focus-visible {
+        color: $color-primary;
+      }
     }
 
     &__marquee {

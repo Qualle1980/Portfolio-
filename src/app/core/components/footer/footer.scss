@@ -27,6 +27,12 @@
     align-items: center;
     gap: 0.5rem;
     margin-bottom: 1.5rem;
+    transition: opacity $transition-fast;
+
+    &:hover,
+    &:focus-visible {
+      opacity: 0.75;
+    }
   }
 
   &__monogram {

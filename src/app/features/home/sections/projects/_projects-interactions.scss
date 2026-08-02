@@ -1,0 +1,17 @@
+@use 'abstracts' as *;
+
+.project-dialog {
+  &__close,
+  &__next {
+    cursor: pointer;
+    transition:
+      color $transition-base,
+      opacity $transition-base;
+
+    &:hover,
+    &:focus-visible {
+      color: $color-text;
+      opacity: 0.75;
+    }
+  }
+}

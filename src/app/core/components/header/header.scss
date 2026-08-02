@@ -26,6 +26,12 @@
     width: 2.197rem;
     height: 3rem;
     font-family: $font-family-heading;
+    transition: opacity $transition-fast;
+
+    &:hover,
+    &:focus-visible {
+      opacity: 0.75;
+    }
   }
 
   &__monogram {
@@ -62,6 +68,12 @@
     border: 0;
     background: transparent;
     cursor: pointer;
+    transition: opacity $transition-fast;
+
+    &:hover,
+    &:focus-visible {
+      opacity: 0.75;
+    }
 
     span {
       width: 1.5rem;
@@ -135,6 +147,7 @@
     line-height: 1;
     letter-spacing: $letter-spacing-navigation;
     white-space: nowrap;
+    transition: color $transition-fast;
 
     &::before {
       position: absolute;
@@ -189,6 +202,11 @@
     transition:
       color $transition-fast,
       background-color $transition-fast;
+
+    &:not(.header__language-button--active):hover,
+    &:not(.header__language-button--active):focus-visible {
+      background: rgba($color-primary, 0.15);
+    }
 
     &--active {
       background: $color-primary;
