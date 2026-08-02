@@ -93,7 +93,7 @@
     object-fit: contain;
   }
 
-  @include respond-from(desktop) {
+  @include respond-from(desktop-large) {
     &__inner {
       display: grid;
       grid-template-columns: 32.5rem minmax(0, 1fr);
@@ -128,7 +128,7 @@
 
     &__grid {
       grid-template-columns: repeat(4, 6.5rem);
-      column-gap: 4.5rem;
+      column-gap: clamp(4rem, 5vw, 4.5rem);
       row-gap: 2.5rem;
       margin-top: 3rem;
     }

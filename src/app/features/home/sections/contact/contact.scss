@@ -63,12 +63,7 @@
     }
   }
 
-  @include respond-from(desktop) {
-    &__inner {
-      grid-template-columns: 35.5rem 38.5rem;
-      gap: 4rem;
-    }
-
+  @include respond-from(desktop-large) {
     &__label {
       font-size: $font-size-section-kicker-desktop;
     }
@@ -88,6 +83,14 @@
 
     &__prompt {
       margin-top: 1.5rem;
+    }
+  }
+
+  @include respond-from(desktop-wide) {
+    &__inner {
+      width: min(calc(100% - (2 * $page-padding-mobile)), 84.5rem);
+      grid-template-columns: 35.5rem 45rem;
+      gap: 4rem;
     }
   }
 }
@@ -266,9 +269,7 @@
     text-align: center;
   }
 
-  @include respond-from(desktop) {
-    width: 38.5rem;
-
+  @include respond-from(desktop-large) {
     &__field {
       height: 8.1875rem;
       padding: 2rem;
@@ -296,6 +297,10 @@
         white-space: normal;
       }
     }
+  }
+
+  @include respond-from(desktop-wide) {
+    width: 45rem;
   }
 }
 
