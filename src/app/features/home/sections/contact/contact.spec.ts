@@ -35,6 +35,12 @@ describe('Contact', () => {
           message: string;
           privacy: boolean;
         }): void;
+        getRawValue(): {
+          name: string;
+          email: string;
+          message: string;
+          privacy: boolean;
+        };
       };
       submitForm(): void;
       submitStatus(): string;
@@ -49,6 +55,12 @@ describe('Contact', () => {
     component.submitForm();
 
     expect(component.submitStatus()).toBe('ready');
+    expect(component.contactForm.getRawValue()).toEqual({
+      name: '',
+      email: '',
+      message: '',
+      privacy: false,
+    });
   });
 
   it('allows the longer German privacy text to wrap', () => {
