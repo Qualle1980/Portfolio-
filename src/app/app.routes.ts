@@ -5,7 +5,7 @@ export const routes: Routes = [
     path: '',
     loadComponent: () =>
       import('./features/home/pages/home/home').then(({ Home }) => Home),
-    title: 'Ahmad Ataya | Portfolio',
+    title: 'Ahmad Ataya Portfolio',
   },
   {
     path: 'impressum',
