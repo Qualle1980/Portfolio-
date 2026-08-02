@@ -23,6 +23,57 @@ describe('Contact', () => {
     expect(fixture.nativeElement.querySelector('.contact-form__privacy--error')).not.toBeNull();
   });
 
+  it('shows a required-field error only after the field loses focus', () => {
+    const fixture = TestBed.createComponent(Contact);
+    fixture.detectChanges();
+
+    const component = fixture.componentInstance as unknown as {
+      contactForm: {
+        controls: { name: { markAsTouched(): void } };
+      };
+    };
+    const nameField = fixture.nativeElement.querySelectorAll(
+      '.contact-form__field',
+    )[0] as HTMLDivElement;
+
+    expect(nameField.classList).not.toContain('contact-form__field--error');
+
+    component.contactForm.controls.name.markAsTouched();
+    fixture.detectChanges();
+
+    expect(nameField.classList).toContain('contact-form__field--error');
+  });
+
+  it('validates the email format after blur and clears the error for a valid email', () => {
+    const fixture = TestBed.createComponent(Contact);
+    fixture.detectChanges();
+
+    const component = fixture.componentInstance as unknown as {
+      contactForm: {
+        controls: {
+          email: {
+            markAsTouched(): void;
+            setValue(value: string): void;
+          };
+        };
+      };
+    };
+    const emailField = fixture.nativeElement.querySelectorAll(
+      '.contact-form__field',
+    )[1] as HTMLDivElement;
+
+    component.contactForm.controls.email.setValue('invalid-email');
+    component.contactForm.controls.email.markAsTouched();
+    fixture.detectChanges();
+
+    expect(emailField.classList).toContain('contact-form__field--error');
+
+    component.contactForm.controls.email.setValue('ahmad@example.com');
+    fixture.detectChanges();
+
+    expect(emailField.classList).not.toContain('contact-form__field--error');
+  });
+
   it('accepts valid values and resets the form', () => {
     const fixture = TestBed.createComponent(Contact);
     fixture.detectChanges();
