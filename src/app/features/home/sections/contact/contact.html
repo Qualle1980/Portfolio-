@@ -75,7 +75,11 @@
           }
         </p>
 
-        <button class="button contact-form__submit" type="submit">
+        <button
+          class="button contact-form__submit"
+          type="submit"
+          [disabled]="contactForm.invalid"
+        >
           <span>{{ contact().submitLabel }}</span>
         </button>
 

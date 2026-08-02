@@ -243,8 +243,15 @@
     margin-top: auto;
     overflow: hidden;
 
-    &:hover,
-    &:focus-visible {
+    &:disabled {
+      border-color: rgba($color-text, 0.4);
+      background: transparent;
+      color: rgba($color-text, 0.4);
+      cursor: not-allowed;
+    }
+
+    &:not(:disabled):hover,
+    &:not(:disabled):focus-visible {
       border-color: $color-primary;
       background: transparent;
       color: $color-text;
@@ -254,8 +261,8 @@
       display: inline-block;
     }
 
-    &:hover span,
-    &:focus-visible span {
+    &:not(:disabled):hover span,
+    &:not(:disabled):focus-visible span {
       animation: contact-button-text-slide 0.65s ease-in-out;
     }
   }
@@ -326,8 +333,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .contact-form__submit {
-    &:hover span,
-    &:focus-visible span {
+    &:not(:disabled):hover span,
+    &:not(:disabled):focus-visible span {
       animation: none;
     }
   }

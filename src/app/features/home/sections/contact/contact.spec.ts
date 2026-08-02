@@ -136,4 +136,45 @@ describe('Contact', () => {
 
     expect(privacyLink.getAttribute('href')).toBe('/datenschutz');
   });
+
+  it('enables the submit button only when the complete form is valid', () => {
+    const fixture = TestBed.createComponent(Contact);
+    fixture.detectChanges();
+
+    const component = fixture.componentInstance as unknown as {
+      contactForm: {
+        setValue(value: {
+          name: string;
+          email: string;
+          message: string;
+          privacy: boolean;
+        }): void;
+      };
+    };
+    const submitButton = fixture.nativeElement.querySelector(
+      '.contact-form__submit',
+    ) as HTMLButtonElement;
+
+    expect(submitButton.disabled).toBe(true);
+
+    component.contactForm.setValue({
+      name: 'Ahmad',
+      email: 'ahmad@example.com',
+      message: 'Ich möchte ein Webprojekt besprechen.',
+      privacy: false,
+    });
+    fixture.detectChanges();
+
+    expect(submitButton.disabled).toBe(true);
+
+    component.contactForm.setValue({
+      name: 'Ahmad',
+      email: 'ahmad@example.com',
+      message: 'Ich möchte ein Webprojekt besprechen.',
+      privacy: true,
+    });
+    fixture.detectChanges();
+
+    expect(submitButton.disabled).toBe(false);
+  });
 });
