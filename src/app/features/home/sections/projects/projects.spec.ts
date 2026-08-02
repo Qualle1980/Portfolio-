@@ -52,7 +52,7 @@ describe('Projects', () => {
     expect(dialog?.textContent).toContain('What is this project about?');
     expect(dialog?.textContent).toContain('Task manager inspired by the Kanban System');
     expect(dialog?.querySelector<HTMLImageElement>('.project-dialog__media img')?.src).toContain(
-      'assets/images/projects/join.svg',
+      'assets/images/projects/join.jpg',
     );
     expect(
       dialog?.querySelectorAll<HTMLButtonElement>('.project-dialog__links button').length,
@@ -68,7 +68,7 @@ describe('Projects', () => {
     const previews = element.querySelectorAll<HTMLImageElement>('.projects__preview img');
 
     expect(previews.length).toBe(3);
-    expect(previews[0].src).toContain('assets/images/projects/join.svg');
+    expect(previews[0].src).toContain('assets/images/projects/join.jpg');
     expect(previews[1].src).toContain('assets/images/projects/el-pollo-loco.png');
     expect(previews[2].src).toContain('assets/images/projects/da-bubble.png');
   });
