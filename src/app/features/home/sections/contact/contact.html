@@ -24,9 +24,16 @@
           id="contact-name"
           type="text"
           formControlName="name"
-          [placeholder]="isInvalid('name') ? contact().nameError : contact().namePlaceholder"
+          [placeholder]="contact().namePlaceholder"
+          [attr.aria-invalid]="isInvalid('name')"
+          [attr.aria-describedby]="isInvalid('name') ? 'contact-name-error' : null"
           autocomplete="name"
         />
+        @if (isInvalid('name')) {
+          <p id="contact-name-error" class="contact-form__field-error" aria-live="polite">
+            {{ errorMessage('name') }}
+          </p>
+        }
       </div>
 
       <div class="contact-form__field" [class.contact-form__field--error]="isInvalid('email')">
@@ -35,9 +42,16 @@
           id="contact-email"
           type="email"
           formControlName="email"
-          [placeholder]="isInvalid('email') ? contact().emailError : contact().emailPlaceholder"
+          [placeholder]="contact().emailPlaceholder"
+          [attr.aria-invalid]="isInvalid('email')"
+          [attr.aria-describedby]="isInvalid('email') ? 'contact-email-error' : null"
           autocomplete="email"
         />
+        @if (isInvalid('email')) {
+          <p id="contact-email-error" class="contact-form__field-error" aria-live="polite">
+            {{ errorMessage('email') }}
+          </p>
+        }
       </div>
 
       <div class="contact-form__field" [class.contact-form__field--error]="isInvalid('message')">
@@ -45,11 +59,16 @@
         <textarea
           id="contact-message"
           formControlName="message"
-          [placeholder]="
-            isInvalid('message') ? contact().messageError : contact().messagePlaceholder
-          "
+          [placeholder]="contact().messagePlaceholder"
+          [attr.aria-invalid]="isInvalid('message')"
+          [attr.aria-describedby]="isInvalid('message') ? 'contact-message-error' : null"
           autocomplete="off"
         ></textarea>
+        @if (isInvalid('message')) {
+          <p id="contact-message-error" class="contact-form__field-error" aria-live="polite">
+            {{ errorMessage('message') }}
+          </p>
+        }
       </div>
 
       <div
@@ -75,11 +94,7 @@
           }
         </p>
 
-        <button
-          class="button contact-form__submit"
-          type="submit"
-          [disabled]="contactForm.invalid"
-        >
+        <button class="button contact-form__submit" type="submit" [disabled]="contactForm.invalid">
           <span>{{ contact().submitLabel }}</span>
         </button>
 

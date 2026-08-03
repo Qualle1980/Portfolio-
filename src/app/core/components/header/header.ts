@@ -59,7 +59,7 @@ export class Header implements AfterViewInit, OnDestroy {
       const section = document.getElementById(fragment);
       if (!section) return;
 
-      const headerOffset = 114;
+      const headerOffset = fragment === 'about' ? 16 : 114;
       const sectionTop = section.getBoundingClientRect().top + window.scrollY;
       window.scrollTo({ top: sectionTop - headerOffset, behavior: 'smooth' });
     }, 50);

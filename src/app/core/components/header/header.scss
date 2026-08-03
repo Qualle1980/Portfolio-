@@ -187,7 +187,8 @@
   }
 
   &__language-button {
-    width: 2.5rem;
+    flex: 1 1 50%;
+    min-width: 0;
     height: 1.375rem;
     padding: 0;
     border: 0;
@@ -210,8 +211,8 @@
 
     &--active {
       background: $color-primary;
-      color: $color-background-deep;
-      font-weight: $font-weight-bold;
+      color: $color-background;
+      font-weight: $font-weight-regular;
     }
   }
 

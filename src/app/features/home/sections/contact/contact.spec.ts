@@ -74,18 +74,41 @@ describe('Contact', () => {
     expect(emailField.classList).not.toContain('contact-form__field--error');
   });
 
+  it('rejects digits in the name and shows the generic error message', () => {
+    const fixture = TestBed.createComponent(Contact);
+    fixture.detectChanges();
+    const input = fixture.nativeElement.querySelectorAll('input')[0] as HTMLInputElement;
+
+    input.value = 'Ahmad1';
+    input.dispatchEvent(new Event('input'));
+    input.dispatchEvent(new Event('blur'));
+    fixture.detectChanges();
+
+    const error = fixture.nativeElement.querySelector('.contact-form__field-error') as HTMLElement;
+    expect(error.textContent?.trim()).toBe('Oops! It seems there is something wrong.');
+  });
+
+  it('shows the generic error message for an email without an at sign', () => {
+    const fixture = TestBed.createComponent(Contact);
+    fixture.detectChanges();
+    const input = fixture.nativeElement.querySelectorAll('input')[1] as HTMLInputElement;
+
+    input.value = 'ahmad.example.com';
+    input.dispatchEvent(new Event('input'));
+    input.dispatchEvent(new Event('blur'));
+    fixture.detectChanges();
+
+    const error = fixture.nativeElement.querySelector('.contact-form__field-error') as HTMLElement;
+    expect(error.textContent?.trim()).toBe('Oops! It seems there is something wrong.');
+  });
+
   it('accepts valid values and resets the form', () => {
     const fixture = TestBed.createComponent(Contact);
     fixture.detectChanges();
 
     const component = fixture.componentInstance as unknown as {
       contactForm: {
-        setValue(value: {
-          name: string;
-          email: string;
-          message: string;
-          privacy: boolean;
-        }): void;
+        setValue(value: { name: string; email: string; message: string; privacy: boolean }): void;
         getRawValue(): {
           name: string;
           email: string;
@@ -143,12 +166,7 @@ describe('Contact', () => {
 
     const component = fixture.componentInstance as unknown as {
       contactForm: {
-        setValue(value: {
-          name: string;
-          email: string;
-          message: string;
-          privacy: boolean;
-        }): void;
+        setValue(value: { name: string; email: string; message: string; privacy: boolean }): void;
       };
     };
     const submitButton = fixture.nativeElement.querySelector(

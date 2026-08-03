@@ -19,7 +19,14 @@ export class Contact {
   protected readonly language = this.portfolioContent.language;
   protected readonly submitStatus = signal<'idle' | 'ready'>('idle');
   protected readonly contactForm = this.formBuilder.nonNullable.group({
-    name: ['', [Validators.required, Validators.minLength(2)]],
+    name: [
+      '',
+      [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.pattern(/^[\p{L}]+(?:[ '-][\p{L}]+)*$/u),
+      ],
+    ],
     email: ['', [Validators.required, Validators.email]],
     message: ['', [Validators.required, Validators.minLength(10)]],
     privacy: [false, Validators.requiredTrue],
@@ -28,6 +35,12 @@ export class Contact {
   protected isInvalid(controlName: keyof typeof this.contactForm.controls): boolean {
     const control = this.contactForm.controls[controlName];
     return control.touched && control.invalid;
+  }
+
+  protected errorMessage(controlName: 'name' | 'email' | 'message'): string {
+    const control = this.contactForm.controls[controlName];
+    if (control.hasError('required')) return this.contact()[`${controlName}Error`];
+    return this.contact().invalidError;
   }
 
   protected submitForm(): void {

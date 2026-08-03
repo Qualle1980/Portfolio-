@@ -117,6 +117,7 @@ export interface ContactCopy {
   readonly messageLabel: string;
   readonly messagePlaceholder: string;
   readonly messageError: string;
+  readonly invalidError: string;
   readonly privacyPrefix: string;
   readonly privacyLink: string;
   readonly privacySuffix: string;
