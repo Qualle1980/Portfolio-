@@ -85,6 +85,12 @@
     font-size: $font-size-body-mobile;
     line-height: 1.15;
     text-align: center;
+    transition: transform $transition-base;
+
+    &:hover,
+    &:focus-within {
+      transform: scale(1.08);
+    }
   }
 
   &__icon {
