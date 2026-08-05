@@ -4,6 +4,7 @@ import { Header } from './header';
 
 describe('Header', () => {
   beforeEach(async () => {
+    window.localStorage.removeItem('portfolio-language');
     await TestBed.configureTestingModule({
       imports: [Header],
       providers: [provideRouter([])],
@@ -31,6 +32,7 @@ describe('Header', () => {
     expect(compiled.textContent).toContain('Über mich');
     expect(compiled.textContent).toContain('Projekte');
     expect(document.documentElement.lang).toBe('de');
+    expect(window.localStorage.getItem('portfolio-language')).toBe('de');
   });
 
   it('closes the mobile menu after changing the language', () => {
@@ -55,7 +57,7 @@ describe('Header', () => {
     expect(getMenuButton(fixture.nativeElement).getAttribute('aria-expanded')).toBe('false');
   });
 
-  it('makes the header background more transparent after scrolling', () => {
+  it('activates the stronger header background after scrolling', () => {
     const fixture = TestBed.createComponent(Header);
     fixture.detectChanges();
 

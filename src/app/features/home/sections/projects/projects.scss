@@ -119,9 +119,9 @@
   z-index: 100;
   inset: 0;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding: 0.25rem;
+  padding: 1rem 0.25rem 0.25rem;
   background: rgba(#000, 0.72);
 
   &__card {
@@ -132,8 +132,8 @@
     align-content: stretch;
     gap: 1rem;
     width: min(100%, 22.875rem);
-    height: min(calc(100dvh - 0.5rem), 52.75rem);
-    max-height: calc(100dvh - 0.5rem);
+    height: min(calc(100dvh - 1.25rem), 52.75rem);
+    max-height: calc(100dvh - 1.25rem);
     padding: 5.375rem 0.75rem 1rem;
     overflow: hidden;
     border: 0.0625rem solid $color-primary;
@@ -160,7 +160,7 @@
     display: block;
     color: $color-primary;
     font-family: $font-family-display;
-    font-size: 4rem;
+    font-size: 3.5rem;
     font-weight: $font-weight-bold;
     line-height: 1;
   }
@@ -168,8 +168,9 @@
   &__title {
     margin-top: 0.5rem;
     color: $color-text;
-    font-size: 3.5rem;
+    font-size: clamp(2rem, 11vw, 3rem);
     line-height: 1;
+    white-space: nowrap;
   }
 
   &__details {
@@ -270,6 +271,7 @@
   }
 
   @include respond-from(tablet) {
+    align-items: center;
     padding: 2.5rem;
 
     &__card {
@@ -279,7 +281,7 @@
       column-gap: 5rem;
       row-gap: 1.25rem;
       width: min(100%, 73.625rem);
-      height: auto;
+      height: min(41rem, calc(100dvh - 5rem));
       padding: 4rem 4.5rem 5.5rem;
       max-height: calc(100dvh - 5rem);
       border-radius: $radius-large;

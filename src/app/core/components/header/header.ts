@@ -36,7 +36,7 @@ export class Header implements AfterViewInit, OnDestroy {
   );
 
   protected setLanguage(language: Language): void {
-    this.portfolioContent.setLanguage(language);
+    this.portfolioContent.setLanguage(language, true);
     this.closeMenu();
   }
 
@@ -60,11 +60,12 @@ export class Header implements AfterViewInit, OnDestroy {
       if (!section) return;
 
       const sectionOffsets: Record<string, number> = {
-        about: 16,
+        about: 0,
+        skills: 98,
         projects: 0,
       };
       const headerOffset = sectionOffsets[fragment] ?? 114;
-      const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+      const sectionTop = section.offsetTop;
       window.scrollTo({ top: sectionTop - headerOffset, behavior: 'smooth' });
     }, 50);
   }

@@ -55,5 +55,8 @@ describe('Hero', () => {
     expect(element.querySelector('[aria-label="LinkedIn"]')?.getAttribute('href')).toBe(
       'https://de.linkedin.com/in/ahmad-ataya-b82b69a0',
     );
+    expect(element.querySelector('[aria-label="E-Mail"]')?.getAttribute('href')).toBe(
+      'mailto:ahmad-ataya@hotmail.de',
+    );
   });
 });

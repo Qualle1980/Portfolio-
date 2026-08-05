@@ -18,7 +18,7 @@
     <nav class="footer__navigation" aria-label="Footer-Navigation">
       <a [href]="githubUrl" target="_blank" rel="noopener noreferrer">GitHub</a>
       <a [href]="linkedinUrl" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      <a routerLink="/" fragment="contact">{{ footer().emailLabel }}</a>
+      <a [href]="emailUrl">{{ footer().emailLabel }}</a>
       <a routerLink="/impressum">{{ footer().legalLabel }}</a>
     </nav>
   </div>

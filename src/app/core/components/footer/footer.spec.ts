@@ -26,14 +26,16 @@ describe('Footer', () => {
     ).toBe(true);
   });
 
-  it('links to the contact and legal notice pages', () => {
+  it('opens the email program and links to the legal notice page', () => {
     const fixture = TestBed.createComponent(Footer);
     fixture.detectChanges();
 
     const element = fixture.nativeElement as HTMLElement;
     const links = [...element.querySelectorAll<HTMLAnchorElement>('a')];
 
-    expect(links.some((link) => link.getAttribute('href') === '/#contact')).toBe(true);
+    expect(
+      links.some((link) => link.getAttribute('href') === 'mailto:ahmad-ataya@hotmail.de'),
+    ).toBe(true);
     expect(links.some((link) => link.getAttribute('href') === '/impressum')).toBe(true);
   });
 });

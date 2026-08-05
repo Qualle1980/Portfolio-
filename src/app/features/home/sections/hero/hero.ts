@@ -15,4 +15,5 @@ export class Hero {
   protected readonly hero = computed(() => this.portfolioContent.currentContent().hero);
   protected readonly githubUrl = 'https://github.com/Qualle1980';
   protected readonly linkedinUrl = 'https://de.linkedin.com/in/ahmad-ataya-b82b69a0';
+  protected readonly emailUrl = 'mailto:ahmad-ataya@hotmail.de';
 }

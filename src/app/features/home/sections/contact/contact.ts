@@ -43,6 +43,10 @@ export class Contact {
     return this.contact().invalidError;
   }
 
+  protected keepContactPosition(event: Event): void {
+    event.preventDefault();
+  }
+
   protected submitForm(): void {
     this.submitStatus.set('idle');
 

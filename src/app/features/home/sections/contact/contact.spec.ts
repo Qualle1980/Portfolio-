@@ -84,7 +84,9 @@ describe('Contact', () => {
     input.dispatchEvent(new Event('blur'));
     fixture.detectChanges();
 
-    const error = fixture.nativeElement.querySelector('.contact-form__field-error') as HTMLElement;
+    const error = fixture.nativeElement.querySelectorAll(
+      '.contact-form__field-error',
+    )[0] as HTMLElement;
     expect(error.textContent?.trim()).toBe('Oops! It seems there is something wrong.');
   });
 
@@ -98,7 +100,9 @@ describe('Contact', () => {
     input.dispatchEvent(new Event('blur'));
     fixture.detectChanges();
 
-    const error = fixture.nativeElement.querySelector('.contact-form__field-error') as HTMLElement;
+    const error = fixture.nativeElement.querySelectorAll(
+      '.contact-form__field-error',
+    )[1] as HTMLElement;
     expect(error.textContent?.trim()).toBe('Oops! It seems there is something wrong.');
   });
 
@@ -158,6 +162,18 @@ describe('Contact', () => {
     ) as HTMLAnchorElement;
 
     expect(privacyLink.getAttribute('href')).toBe('/datenschutz');
+  });
+
+  it('keeps the page position when the contact prompt is clicked', () => {
+    const fixture = TestBed.createComponent(Contact);
+    fixture.detectChanges();
+
+    const promptLink = fixture.nativeElement.querySelector('.contact__prompt a') as HTMLAnchorElement;
+    const clickEvent = new MouseEvent('click', { bubbles: true, cancelable: true });
+
+    promptLink.dispatchEvent(clickEvent);
+
+    expect(clickEvent.defaultPrevented).toBe(true);
   });
 
   it('enables the submit button only when the complete form is valid', () => {

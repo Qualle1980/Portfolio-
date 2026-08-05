@@ -6,20 +6,15 @@
 
 .section {
   opacity: 0;
-  transform: translateY(1.5rem);
-  transition:
-    opacity $transition-base,
-    transform $transition-base;
+  transition: opacity $transition-base;
 
   &--visible {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
 @include reduced-motion {
   .section {
     opacity: 1;
-    transform: none;
   }
 }

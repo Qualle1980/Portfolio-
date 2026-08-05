@@ -7,7 +7,9 @@
       <p class="contact__copy">{{ contact().intro }}</p>
       <p class="contact__prompt">
         {{ contact().prompt }}
-        <a href="#contact-form">{{ contact().promptLink }}</a>
+        <a href="#contact-form" (click)="keepContactPosition($event)">
+          {{ contact().promptLink }}
+        </a>
       </p>
     </div>
 
@@ -29,11 +31,11 @@
           [attr.aria-describedby]="isInvalid('name') ? 'contact-name-error' : null"
           autocomplete="name"
         />
-        @if (isInvalid('name')) {
-          <p id="contact-name-error" class="contact-form__field-error" aria-live="polite">
+        <p id="contact-name-error" class="contact-form__field-error" aria-live="polite">
+          @if (isInvalid('name')) {
             {{ errorMessage('name') }}
-          </p>
-        }
+          }
+        </p>
       </div>
 
       <div class="contact-form__field" [class.contact-form__field--error]="isInvalid('email')">
@@ -47,11 +49,11 @@
           [attr.aria-describedby]="isInvalid('email') ? 'contact-email-error' : null"
           autocomplete="email"
         />
-        @if (isInvalid('email')) {
-          <p id="contact-email-error" class="contact-form__field-error" aria-live="polite">
+        <p id="contact-email-error" class="contact-form__field-error" aria-live="polite">
+          @if (isInvalid('email')) {
             {{ errorMessage('email') }}
-          </p>
-        }
+          }
+        </p>
       </div>
 
       <div class="contact-form__field" [class.contact-form__field--error]="isInvalid('message')">
@@ -64,11 +66,11 @@
           [attr.aria-describedby]="isInvalid('message') ? 'contact-message-error' : null"
           autocomplete="off"
         ></textarea>
-        @if (isInvalid('message')) {
-          <p id="contact-message-error" class="contact-form__field-error" aria-live="polite">
+        <p id="contact-message-error" class="contact-form__field-error" aria-live="polite">
+          @if (isInvalid('message')) {
             {{ errorMessage('message') }}
-          </p>
-        }
+          }
+        </p>
       </div>
 
       <div
