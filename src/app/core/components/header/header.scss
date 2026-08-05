@@ -1,5 +1,11 @@
 @use 'abstracts' as *;
 
+@media (max-width: 47.9375rem) {
+  :host-context(.project-dialog-open) {
+    display: none;
+  }
+}
+
 :host {
   position: relative;
   z-index: 20;

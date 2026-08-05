@@ -133,6 +133,7 @@ describe('Projects', () => {
 
     expect(document.documentElement.style.overflow).toBe('hidden');
     expect(document.body.style.overflow).toBe('hidden');
+    expect(document.body.classList.contains('project-dialog-open')).toBe(true);
 
     document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
     fixture.detectChanges();
@@ -140,6 +141,7 @@ describe('Projects', () => {
     expect(element.querySelector('[role="dialog"]')).toBeNull();
     expect(document.documentElement.style.overflow).toBe('');
     expect(document.body.style.overflow).toBe('');
+    expect(document.body.classList.contains('project-dialog-open')).toBe(false);
   });
 
   it('renders the German project copy after changing the language', () => {

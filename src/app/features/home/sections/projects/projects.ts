@@ -34,9 +34,11 @@ export class Projects {
     const previousOverflow = this.document.body.style.overflow;
     this.document.documentElement.style.overflow = 'hidden';
     this.document.body.style.overflow = 'hidden';
+    this.document.body.classList.add('project-dialog-open');
     onCleanup(() => {
       this.document.documentElement.style.overflow = previousDocumentOverflow;
       this.document.body.style.overflow = previousOverflow;
+      this.document.body.classList.remove('project-dialog-open');
     });
   });
 
