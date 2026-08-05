@@ -119,9 +119,12 @@
   z-index: 100;
   inset: 0;
   display: flex;
-  align-items: flex-start;
+  align-items: stretch;
   justify-content: center;
-  padding: 1rem 0.25rem 0.25rem;
+  width: 100vw;
+  height: 100dvh;
+  padding: 0;
+  overscroll-behavior: contain;
   background: rgba(#000, 0.72);
 
   &__card {
@@ -131,21 +134,21 @@
     grid-template-rows: auto auto auto 1fr;
     align-content: stretch;
     gap: 1rem;
-    width: min(calc(100vw - 2rem), 22.875rem);
+    width: 100%;
     min-width: 0;
-    height: min(calc(100dvh - 1.25rem), 52.75rem);
-    max-height: calc(100dvh - 1.25rem);
-    padding: 5.375rem 0.75rem 1rem;
+    height: 100dvh;
+    max-height: 100dvh;
+    padding: max(4rem, env(safe-area-inset-top)) 1rem max(4rem, env(safe-area-inset-bottom));
     overflow: hidden;
-    border: 0.0625rem solid $color-primary;
-    border-radius: 1.25rem;
+    border: 0;
+    border-radius: 0;
     background: linear-gradient(55deg, $color-background 23.049%, $color-background-deep 100%);
   }
 
   &__close {
     position: absolute;
-    top: 1.25rem;
-    right: 1.25rem;
+    top: max(1rem, env(safe-area-inset-top));
+    right: 1rem;
     border: 0;
     color: $color-text;
     font-size: 2rem;
@@ -260,7 +263,9 @@
   }
 
   &__next {
-    position: static;
+    position: absolute;
+    right: 1rem;
+    bottom: max(1rem, env(safe-area-inset-bottom));
     order: 4;
     align-self: end;
     justify-self: end;
@@ -278,6 +283,8 @@
 
   @include respond-from(tablet) {
     align-items: center;
+    width: auto;
+    height: auto;
     padding: 2.5rem;
 
     &__card {
@@ -291,6 +298,7 @@
       padding: 4rem 4.5rem 5.5rem;
       max-height: calc(100dvh - 5rem);
       border-radius: $radius-large;
+      border: 0.0625rem solid $color-primary;
     }
 
     &__close {
@@ -328,7 +336,7 @@
     &__card {
       align-content: normal;
       gap: 0.5rem;
-      padding: 3rem 0.75rem 0.75rem;
+      padding: 3rem 0.75rem 4rem;
     }
 
     &__close {
@@ -389,7 +397,9 @@
     }
 
     &__next {
-      position: static;
+      position: absolute;
+      right: 0.75rem;
+      bottom: max(0.75rem, env(safe-area-inset-bottom));
     }
   }
 }
