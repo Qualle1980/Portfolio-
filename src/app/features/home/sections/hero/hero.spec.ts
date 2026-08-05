@@ -31,6 +31,19 @@ describe('Hero', () => {
 
     expect(fixture.nativeElement.textContent).toContain('Meine Projekte');
     expect(fixture.nativeElement.textContent).toContain('Frontend-Entwickler');
+    expect(fixture.nativeElement.textContent).toContain('Kontaktformular');
+  });
+
+  it('labels the vertical contact link as a contact form link', () => {
+    const fixture = TestBed.createComponent(Hero);
+    fixture.detectChanges();
+
+    const contactLink = fixture.nativeElement.querySelector(
+      '.hero__vertical-contact',
+    ) as HTMLAnchorElement;
+
+    expect(contactLink.textContent?.trim()).toBe('Contact form');
+    expect(contactLink.getAttribute('href')).toBe('/#contact');
   });
 
   it('links the calls to action to projects and contact', () => {

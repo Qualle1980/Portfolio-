@@ -27,7 +27,7 @@ export const PORTFOLIO_CONTENT: Readonly<Record<Language, PortfolioCopy>> = {
       projectsCta: 'Meine Projekte',
       contactCta: 'Kontakt',
       scrollLabel: 'Zum Abschnitt Über mich',
-      contactLabel: 'Kontakt',
+      contactLabel: 'Kontaktformular',
       ticker: [
         'Remote verfügbar',
         'Frontend-Entwickler',
@@ -187,7 +187,7 @@ export const PORTFOLIO_CONTENT: Readonly<Record<Language, PortfolioCopy>> = {
       projectsCta: 'Check my work',
       contactCta: 'Contact me',
       scrollLabel: 'Scroll to About me',
-      contactLabel: 'Contact',
+      contactLabel: 'Contact form',
       ticker: [
         'Available for remote work',
         'Frontend Developer',
