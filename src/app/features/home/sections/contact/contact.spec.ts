@@ -1,4 +1,6 @@
 import { TestBed } from '@angular/core/testing';
+import { provideHttpClient } from '@angular/common/http';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideRouter } from '@angular/router';
 import { PortfolioContent } from '../../../../shared/services/portfolio-content';
 import { Contact } from './contact';
@@ -7,7 +9,7 @@ describe('Contact', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [Contact],
-      providers: [provideRouter([])],
+      providers: [provideRouter([]), provideHttpClient(), provideHttpClientTesting()],
     }).compileComponents();
   });
 
@@ -77,11 +79,12 @@ describe('Contact', () => {
   it('rejects digits in the name and explains the allowed characters', () => {
     const fixture = TestBed.createComponent(Contact);
     fixture.detectChanges();
-    const input = fixture.nativeElement.querySelectorAll('input')[0] as HTMLInputElement;
+    const control = (fixture.componentInstance as unknown as {
+      contactForm: { controls: { name: { setValue(value: string): void; markAsTouched(): void } } };
+    }).contactForm.controls.name;
 
-    input.value = 'Ahmad1';
-    input.dispatchEvent(new Event('input'));
-    input.dispatchEvent(new Event('blur'));
+    control.setValue('Ahmad1');
+    control.markAsTouched();
     fixture.detectChanges();
 
     const error = fixture.nativeElement.querySelectorAll(
@@ -95,11 +98,12 @@ describe('Contact', () => {
   it('shows a specific error message for an email without an at sign', () => {
     const fixture = TestBed.createComponent(Contact);
     fixture.detectChanges();
-    const input = fixture.nativeElement.querySelectorAll('input')[1] as HTMLInputElement;
+    const control = (fixture.componentInstance as unknown as {
+      contactForm: { controls: { email: { setValue(value: string): void; markAsTouched(): void } } };
+    }).contactForm.controls.email;
 
-    input.value = 'ahmad.example.com';
-    input.dispatchEvent(new Event('input'));
-    input.dispatchEvent(new Event('blur'));
+    control.setValue('ahmad.example.com');
+    control.markAsTouched();
     fixture.detectChanges();
 
     const error = fixture.nativeElement.querySelectorAll(
@@ -112,16 +116,19 @@ describe('Contact', () => {
     const fixture = TestBed.createComponent(Contact);
     TestBed.inject(PortfolioContent).setLanguage('de');
     fixture.detectChanges();
-    const fields = fixture.nativeElement.querySelectorAll(
-      '.contact-form__field input, .contact-form__field textarea',
-    ) as NodeListOf<HTMLInputElement | HTMLTextAreaElement>;
+    const controls = (fixture.componentInstance as unknown as {
+      contactForm: {
+        controls: {
+          name: { setValue(value: string): void; markAsTouched(): void };
+          message: { setValue(value: string): void; markAsTouched(): void };
+        };
+      };
+    }).contactForm.controls;
 
-    fields[0].value = 'Al';
-    fields[0].dispatchEvent(new Event('input'));
-    fields[0].dispatchEvent(new Event('blur'));
-    fields[2].value = 'Zu kurz';
-    fields[2].dispatchEvent(new Event('input'));
-    fields[2].dispatchEvent(new Event('blur'));
+    controls.name.setValue('Al');
+    controls.name.markAsTouched();
+    controls.message.setValue('Zu kurz');
+    controls.message.markAsTouched();
     fixture.detectChanges();
 
     const errors = fixture.nativeElement.querySelectorAll('.contact-form__field-error');
@@ -139,12 +146,13 @@ describe('Contact', () => {
 
     const component = fixture.componentInstance as unknown as {
       contactForm: {
-        setValue(value: { name: string; email: string; message: string; privacy: boolean }): void;
+        setValue(value: { name: string; email: string; message: string; privacy: boolean; website: string }): void;
         getRawValue(): {
           name: string;
           email: string;
           message: string;
           privacy: boolean;
+          website: string;
         };
       };
       submitForm(): void;
@@ -156,8 +164,13 @@ describe('Contact', () => {
       email: 'ahmad@example.com',
       message: 'Ich möchte ein Webprojekt besprechen.',
       privacy: true,
+      website: '',
     });
     component.submitForm();
+
+    TestBed.inject(HttpTestingController)
+      .expectOne('/api/contact.php')
+      .flush({ success: true });
 
     expect(component.submitStatus()).toBe('ready');
     expect(component.contactForm.getRawValue()).toEqual({
@@ -165,6 +178,7 @@ describe('Contact', () => {
       email: '',
       message: '',
       privacy: false,
+      website: '',
     });
   });
 
@@ -209,7 +223,7 @@ describe('Contact', () => {
 
     const component = fixture.componentInstance as unknown as {
       contactForm: {
-        setValue(value: { name: string; email: string; message: string; privacy: boolean }): void;
+        setValue(value: { name: string; email: string; message: string; privacy: boolean; website: string }): void;
       };
     };
     const submitButton = fixture.nativeElement.querySelector(
@@ -223,6 +237,7 @@ describe('Contact', () => {
       email: 'ahmad@example.com',
       message: 'Ich möchte ein Webprojekt besprechen.',
       privacy: false,
+      website: '',
     });
     fixture.detectChanges();
 
@@ -233,6 +248,7 @@ describe('Contact', () => {
       email: 'ahmad@example.com',
       message: 'Ich möchte ein Webprojekt besprechen.',
       privacy: true,
+      website: '',
     });
     fixture.detectChanges();
 

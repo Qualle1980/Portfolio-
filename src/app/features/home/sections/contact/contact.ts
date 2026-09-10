@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { PortfolioContent } from '../../../../shared/services/portfolio-content';
@@ -13,11 +14,12 @@ import { PortfolioContent } from '../../../../shared/services/portfolio-content'
 })
 export class Contact {
   private readonly formBuilder = inject(FormBuilder);
+  private readonly http = inject(HttpClient);
   private readonly portfolioContent = inject(PortfolioContent);
 
   protected readonly contact = computed(() => this.portfolioContent.currentContent().contact);
   protected readonly language = this.portfolioContent.language;
-  protected readonly submitStatus = signal<'idle' | 'ready'>('idle');
+  protected readonly submitStatus = signal<'idle' | 'sending' | 'ready' | 'error'>('idle');
   protected readonly contactForm = this.formBuilder.nonNullable.group({
     name: [
       '',
@@ -30,6 +32,7 @@ export class Contact {
     email: ['', [Validators.required, Validators.email]],
     message: ['', [Validators.required, Validators.minLength(10)]],
     privacy: [false, Validators.requiredTrue],
+    website: [''],
   });
 
   protected isInvalid(controlName: keyof typeof this.contactForm.controls): boolean {
@@ -66,7 +69,21 @@ export class Contact {
       return;
     }
 
-    this.submitStatus.set('ready');
-    this.contactForm.reset();
+    const { name, email, message, privacy, website } = this.contactForm.getRawValue();
+    this.submitStatus.set('sending');
+
+    this.http.post<{ success: boolean }>('/api/contact.php', {
+      name,
+      email,
+      message,
+      privacy,
+      website,
+    }).subscribe({
+      next: () => {
+        this.submitStatus.set('ready');
+        this.contactForm.reset();
+      },
+      error: () => this.submitStatus.set('error'),
+    });
   }
 }

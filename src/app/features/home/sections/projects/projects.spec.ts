@@ -33,10 +33,10 @@ describe('Projects', () => {
     expect(dialog).not.toBeNull();
     expect(dialog?.textContent).toContain('What is this project about?');
     expect(links?.[0].href).toBe('https://github.com/Qualle1980/El-Pollo-Loco');
-    expect(links?.[1].href).toContain('ahmadataya.developerakademie.net');
+    expect(links?.[1].href).toBe('https://ahmad-ataya.de/el-pollo-loco/');
   });
 
-  it('opens Join with its preview, GitHub link and inactive live button', () => {
+  it('opens Join with its preview, GitHub link and live link', () => {
     const fixture = TestBed.createComponent(Projects);
     fixture.detectChanges();
 
@@ -54,12 +54,12 @@ describe('Projects', () => {
     expect(dialog?.querySelector<HTMLImageElement>('.project-dialog__media img')?.src).toContain(
       'assets/images/projects/join.jpg',
     );
-    expect(
-      dialog?.querySelectorAll<HTMLButtonElement>('.project-dialog__links button').length,
-    ).toBe(1);
-    expect(dialog?.querySelector<HTMLAnchorElement>('.project-dialog__links a')?.href).toBe(
+    const links = dialog?.querySelectorAll<HTMLAnchorElement>('.project-dialog__links a');
+    expect(links?.length).toBe(2);
+    expect(links?.[0].href).toBe(
       'https://github.com/Qualle1980/join',
     );
+    expect(links?.[1].href).toBe('https://ahmad-ataya.de/join/');
   });
 
   it('renders a matching hover preview for every project', () => {

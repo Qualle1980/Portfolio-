@@ -110,6 +110,14 @@
   min-width: 0;
   max-width: 100%;
 
+  &__honeypot {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
   &__field {
     position: relative;
     display: flex;

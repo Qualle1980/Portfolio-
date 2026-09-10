@@ -20,6 +20,11 @@
       (ngSubmit)="submitForm()"
       novalidate
     >
+      <div class="contact-form__honeypot" aria-hidden="true">
+        <label for="contact-website">Website</label>
+        <input id="contact-website" type="text" formControlName="website" tabindex="-1" autocomplete="off" />
+      </div>
+
       <div class="contact-form__field" [class.contact-form__field--error]="isInvalid('name')">
         <label for="contact-name">{{ contact().nameLabel }}</label>
         <input
@@ -96,13 +101,21 @@
           }
         </p>
 
-        <button class="button contact-form__submit" type="submit" [disabled]="contactForm.invalid">
+        <button
+          class="button contact-form__submit"
+          type="submit"
+          [disabled]="contactForm.invalid || submitStatus() === 'sending'"
+        >
           <span>{{ contact().submitLabel }}</span>
         </button>
 
         <p class="contact-form__status" aria-live="polite">
           @if (submitStatus() === 'ready') {
             {{ contact().readyMessage }}
+          } @else if (submitStatus() === 'sending') {
+            {{ contact().sendingMessage }}
+          } @else if (submitStatus() === 'error') {
+            {{ contact().sendErrorMessage }}
           }
         </p>
       </div>

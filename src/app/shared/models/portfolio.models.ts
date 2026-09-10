@@ -126,7 +126,9 @@ export interface ContactCopy {
   readonly privacySuffix: string;
   readonly privacyError: string;
   readonly submitLabel: string;
+  readonly sendingMessage: string;
   readonly readyMessage: string;
+  readonly sendErrorMessage: string;
 }
 
 export interface FooterCopy {
