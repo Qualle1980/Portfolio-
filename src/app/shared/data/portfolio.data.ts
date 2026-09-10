@@ -86,9 +86,10 @@ export const PORTFOLIO_CONTENT: Readonly<Record<Language, PortfolioCopy>> = {
           description:
             'Ein vom Kanban-System inspirierter Task-Manager. Aufgaben lassen sich per Drag-and-drop erstellen und organisieren sowie Benutzern und Kategorien zuordnen.',
           learned:
-            'Dieses Projekt wird im weiteren Kursverlauf umgesetzt. Die Live- und GitHub-Links werden anschließend ergänzt.',
+            'In diesem Gruppenprojekt habe ich eine umfangreiche Angular-Anwendung mit Supabase-Anbindung, responsiver Oberfläche und gemeinsamer Git-Entwicklung umgesetzt.',
           technologies: ['CSS', 'HTML', 'Supabase', 'Angular', 'TypeScript'],
           summaryTechnologies: ['Angular', 'TypeScript', 'HTML', 'CSS', 'Supabase'],
+          githubUrl: 'https://github.com/Qualle1980/join',
           image: 'assets/images/projects/join.jpg',
           imageAlt: 'Vorschau des Kanban-Task-Managers Join',
           imagePosition: 'top',
@@ -246,9 +247,10 @@ export const PORTFOLIO_CONTENT: Readonly<Record<Language, PortfolioCopy>> = {
           description:
             'Task manager inspired by the Kanban System. Create and organize tasks using drag and drop functions, assign users and categories.',
           learned:
-            'This project will be implemented later in the course. The live and GitHub links will be added afterwards.',
+            'In this group project, I built a comprehensive Angular application with Supabase integration, a responsive interface and collaborative Git development.',
           technologies: ['CSS', 'HTML', 'Supabase', 'Angular', 'TypeScript'],
           summaryTechnologies: ['Angular', 'TypeScript', 'HTML', 'CSS', 'Supabase'],
+          githubUrl: 'https://github.com/Qualle1980/join',
           image: 'assets/images/projects/join.jpg',
           imageAlt: 'Preview of the Join Kanban task manager',
           imagePosition: 'top',

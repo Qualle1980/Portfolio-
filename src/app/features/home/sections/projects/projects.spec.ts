@@ -36,7 +36,7 @@ describe('Projects', () => {
     expect(links?.[1].href).toContain('ahmadataya.developerakademie.net');
   });
 
-  it('opens Join with its Figma copy, preview and inactive project buttons', () => {
+  it('opens Join with its preview, GitHub link and inactive live button', () => {
     const fixture = TestBed.createComponent(Projects);
     fixture.detectChanges();
 
@@ -56,8 +56,10 @@ describe('Projects', () => {
     );
     expect(
       dialog?.querySelectorAll<HTMLButtonElement>('.project-dialog__links button').length,
-    ).toBe(2);
-    expect(dialog?.querySelectorAll('a').length).toBe(0);
+    ).toBe(1);
+    expect(dialog?.querySelector<HTMLAnchorElement>('.project-dialog__links a')?.href).toBe(
+      'https://github.com/Qualle1980/join',
+    );
   });
 
   it('renders a matching hover preview for every project', () => {
