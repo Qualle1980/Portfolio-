@@ -109,17 +109,6 @@ export const PORTFOLIO_CONTENT: Readonly<Record<Language, PortfolioCopy>> = {
           image: 'assets/images/projects/el-pollo-loco.png',
           imageAlt: 'Startbildschirm des Spiels El Pollo Loco',
         },
-        {
-          number: '03',
-          title: 'DA Bubble',
-          description:
-            'Diese App verbessert die Zusammenarbeit im Team durch eine intuitive Oberfläche, Echtzeitnachrichten und eine übersichtliche Organisation von Kanälen.',
-          learned:
-            'Dieses Gruppenprojekt wird im weiteren Kursverlauf umgesetzt. Die Live- und GitHub-Links werden anschließend ergänzt.',
-          technologies: ['Angular', 'Supabase', 'TypeScript'],
-          image: 'assets/images/projects/da-bubble.png',
-          imageAlt: 'Vorschau der Team-Kommunikations-App DA Bubble',
-        },
       ],
     },
     testimonials: {
@@ -277,17 +266,6 @@ export const PORTFOLIO_CONTENT: Readonly<Record<Language, PortfolioCopy>> = {
           githubUrl: 'https://github.com/Qualle1980/El-Pollo-Loco',
           image: 'assets/images/projects/el-pollo-loco.png',
           imageAlt: 'Start screen of the El Pollo Loco game',
-        },
-        {
-          number: '03',
-          title: 'DA Bubble',
-          description:
-            'This app revolutionizes team collaboration with its intuitive interface, real-time messaging and robust channel organization.',
-          learned:
-            'This group project will be implemented later in the course. The live and GitHub links will be added afterwards.',
-          technologies: ['Angular', 'Supabase', 'TypeScript'],
-          image: 'assets/images/projects/da-bubble.png',
-          imageAlt: 'Preview of the DA Bubble team communication app',
         },
       ],
     },

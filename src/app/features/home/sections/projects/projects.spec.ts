@@ -16,13 +16,12 @@ describe('Projects', () => {
     const element = fixture.nativeElement as HTMLElement;
     const projectButtons = element.querySelectorAll<HTMLButtonElement>('.projects__trigger');
 
-    expect(projectButtons.length).toBe(3);
+    expect(projectButtons.length).toBe(2);
     expect(element.textContent).toContain('El Pollo Loco');
     expect(element.textContent).toContain('Join');
-    expect(element.textContent).toContain('DA Bubble');
+    expect(element.textContent).not.toContain('DA Bubble');
     expect(projectButtons[0].textContent).toContain('Join');
     expect(projectButtons[1].textContent).toContain('El Pollo Loco');
-    expect(projectButtons[2].textContent).toContain('DA Bubble');
 
     projectButtons[1].click();
     fixture.detectChanges();
@@ -69,10 +68,9 @@ describe('Projects', () => {
     const element = fixture.nativeElement as HTMLElement;
     const previews = element.querySelectorAll<HTMLImageElement>('.projects__preview img');
 
-    expect(previews.length).toBe(3);
+    expect(previews.length).toBe(2);
     expect(previews[0].src).toContain('assets/images/projects/join.jpg');
     expect(previews[1].src).toContain('assets/images/projects/el-pollo-loco.png');
-    expect(previews[2].src).toContain('assets/images/projects/da-bubble.png');
   });
 
   it('keeps the hover preview closed after Escape until the project is left', () => {
@@ -99,30 +97,6 @@ describe('Projects', () => {
     projectItem?.dispatchEvent(new MouseEvent('mouseenter'));
     fixture.detectChanges();
     expect(preview?.classList.contains('projects__preview--visible')).toBe(true);
-  });
-
-  it('opens DA Bubble as the third project with its preview and inactive buttons', () => {
-    const fixture = TestBed.createComponent(Projects);
-    fixture.detectChanges();
-
-    const element = fixture.nativeElement as HTMLElement;
-    const projectButtons = element.querySelectorAll<HTMLButtonElement>('.projects__trigger');
-
-    projectButtons[2].click();
-    fixture.detectChanges();
-
-    const dialog = element.querySelector<HTMLElement>('[role="dialog"]');
-
-    expect(dialog?.getAttribute('aria-label')).toBe('DA Bubble');
-    expect(dialog?.textContent).toContain('03');
-    expect(dialog?.textContent).toContain('real-time messaging');
-    expect(dialog?.querySelector<HTMLImageElement>('.project-dialog__media img')?.src).toContain(
-      'assets/images/projects/da-bubble.png',
-    );
-    expect(
-      dialog?.querySelectorAll<HTMLButtonElement>('.project-dialog__links button').length,
-    ).toBe(2);
-    expect(dialog?.querySelectorAll('a').length).toBe(0);
   });
 
   it('closes an open project dialog with the Escape key', () => {
