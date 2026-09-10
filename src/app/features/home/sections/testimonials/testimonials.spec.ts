@@ -27,6 +27,18 @@ describe('Testimonials', () => {
     );
   });
 
+  it('renders the three colleague testimonials without placeholders', () => {
+    const fixture = TestBed.createComponent(Testimonials);
+    fixture.detectChanges();
+
+    const text = (fixture.nativeElement as HTMLElement).textContent ?? '';
+
+    expect(text).toContain('Christian W.');
+    expect(text).toContain('Daniel K.');
+    expect(text).toContain('Salih D.');
+    expect(text).not.toContain('Reference pending');
+  });
+
   it('supports the left and right arrow keys', () => {
     const fixture = TestBed.createComponent(Testimonials);
     fixture.detectChanges();

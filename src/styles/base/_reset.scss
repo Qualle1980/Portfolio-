@@ -7,6 +7,8 @@
 }
 
 html {
+  max-width: 100%;
+  overflow-x: clip;
   scroll-behavior: smooth;
 }
 
@@ -25,7 +27,10 @@ blockquote {
 }
 
 body {
+  width: 100%;
+  max-width: 100%;
   min-height: 100vh;
+  overflow-x: clip;
   background: $color-background;
   color: $color-text;
 }

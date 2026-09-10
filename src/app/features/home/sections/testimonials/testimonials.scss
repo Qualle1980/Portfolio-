@@ -7,10 +7,11 @@
 }
 
 .testimonials {
+  @include page-container;
   color: $color-text;
 
   &__title {
-    width: min(calc(100% - 2rem), 37.1875rem);
+    width: min(100%, 37.1875rem);
     margin-inline: auto;
     color: $color-primary;
     font-family: $font-family-heading;
@@ -23,8 +24,7 @@
     position: relative;
     width: 100%;
     margin-top: 3rem;
-    overflow-x: clip;
-    overflow-y: visible;
+    overflow: clip;
 
     &::before,
     &::after {

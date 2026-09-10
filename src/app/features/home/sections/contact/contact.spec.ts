@@ -74,7 +74,7 @@ describe('Contact', () => {
     expect(emailField.classList).not.toContain('contact-form__field--error');
   });
 
-  it('rejects digits in the name and shows the generic error message', () => {
+  it('rejects digits in the name and explains the allowed characters', () => {
     const fixture = TestBed.createComponent(Contact);
     fixture.detectChanges();
     const input = fixture.nativeElement.querySelectorAll('input')[0] as HTMLInputElement;
@@ -87,10 +87,12 @@ describe('Contact', () => {
     const error = fixture.nativeElement.querySelectorAll(
       '.contact-form__field-error',
     )[0] as HTMLElement;
-    expect(error.textContent?.trim()).toBe('Oops! It seems there is something wrong.');
+    expect(error.textContent?.trim()).toBe(
+      'Please use only letters, spaces, hyphens, or apostrophes.',
+    );
   });
 
-  it('shows the generic error message for an email without an at sign', () => {
+  it('shows a specific error message for an email without an at sign', () => {
     const fixture = TestBed.createComponent(Contact);
     fixture.detectChanges();
     const input = fixture.nativeElement.querySelectorAll('input')[1] as HTMLInputElement;
@@ -103,7 +105,32 @@ describe('Contact', () => {
     const error = fixture.nativeElement.querySelectorAll(
       '.contact-form__field-error',
     )[1] as HTMLElement;
-    expect(error.textContent?.trim()).toBe('Oops! It seems there is something wrong.');
+    expect(error.textContent?.trim()).toBe('Please enter a valid email address.');
+  });
+
+  it('explains the minimum length for short names and messages', () => {
+    const fixture = TestBed.createComponent(Contact);
+    TestBed.inject(PortfolioContent).setLanguage('de');
+    fixture.detectChanges();
+    const fields = fixture.nativeElement.querySelectorAll(
+      '.contact-form__field input, .contact-form__field textarea',
+    ) as NodeListOf<HTMLInputElement | HTMLTextAreaElement>;
+
+    fields[0].value = 'Al';
+    fields[0].dispatchEvent(new Event('input'));
+    fields[0].dispatchEvent(new Event('blur'));
+    fields[2].value = 'Zu kurz';
+    fields[2].dispatchEvent(new Event('input'));
+    fields[2].dispatchEvent(new Event('blur'));
+    fixture.detectChanges();
+
+    const errors = fixture.nativeElement.querySelectorAll('.contact-form__field-error');
+    expect(errors[0].textContent?.trim()).toBe(
+      'Dein Name muss mindestens drei Zeichen lang sein.',
+    );
+    expect(errors[2].textContent?.trim()).toBe(
+      'Deine Nachricht muss mindestens zehn Zeichen lang sein.',
+    );
   });
 
   it('accepts valid values and resets the form', () => {

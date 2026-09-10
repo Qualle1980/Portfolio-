@@ -23,7 +23,7 @@ export class Contact {
       '',
       [
         Validators.required,
-        Validators.minLength(2),
+        Validators.minLength(3),
         Validators.pattern(/^[\p{L}]+(?:[ '-][\p{L}]+)*$/u),
       ],
     ],
@@ -39,8 +39,19 @@ export class Contact {
 
   protected errorMessage(controlName: 'name' | 'email' | 'message'): string {
     const control = this.contactForm.controls[controlName];
-    if (control.hasError('required')) return this.contact()[`${controlName}Error`];
-    return this.contact().invalidError;
+    const copy = this.contact();
+
+    if (controlName === 'name') {
+      if (control.hasError('required')) return copy.nameRequiredError;
+      if (control.hasError('minlength')) return copy.nameLengthError;
+      return copy.nameFormatError;
+    }
+
+    if (controlName === 'email') {
+      return control.hasError('required') ? copy.emailRequiredError : copy.emailFormatError;
+    }
+
+    return control.hasError('required') ? copy.messageRequiredError : copy.messageLengthError;
   }
 
   protected keepContactPosition(event: Event): void {

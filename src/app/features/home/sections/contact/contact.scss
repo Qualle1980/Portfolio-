@@ -167,14 +167,6 @@
       border-color: $color-primary;
     }
 
-    &--error {
-      input,
-      textarea {
-        &::placeholder {
-          color: #ec7b7b;
-        }
-      }
-    }
   }
 
   &__field-error {
