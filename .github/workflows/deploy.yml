@@ -44,6 +44,7 @@ jobs:
           set ftp:ssl-force true
           set ftp:ssl-protect-data true
           set ssl:verify-certificate yes
+          set ssl:check-hostname no
           mirror --reverse --verbose --only-newer --exclude-glob join/** --exclude-glob el-pollo-loco/** dist/ahmad-ataya-portfolio/browser/ /ahmad-ataya.de/httpdocs/
           bye
           EOF
