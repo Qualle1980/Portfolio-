@@ -25,6 +25,8 @@
     width: 100%;
     margin-top: 3rem;
     overflow: clip;
+    touch-action: pan-y;
+    user-select: none;
 
     &::before,
     &::after {

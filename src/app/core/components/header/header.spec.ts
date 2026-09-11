@@ -57,6 +57,18 @@ describe('Header', () => {
     expect(getMenuButton(fixture.nativeElement).getAttribute('aria-expanded')).toBe('false');
   });
 
+  it('closes the mobile menu when its backdrop is clicked', () => {
+    const fixture = TestBed.createComponent(Header);
+    fixture.detectChanges();
+
+    getMenuButton(fixture.nativeElement).click();
+    fixture.detectChanges();
+    (fixture.nativeElement.querySelector('.header__menu-backdrop') as HTMLButtonElement).click();
+    fixture.detectChanges();
+
+    expect(getMenuButton(fixture.nativeElement).getAttribute('aria-expanded')).toBe('false');
+  });
+
   it('activates the stronger header background after scrolling', () => {
     const fixture = TestBed.createComponent(Header);
     fixture.detectChanges();

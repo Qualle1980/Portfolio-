@@ -3,7 +3,12 @@
     {{ testimonials().title }}
   </h2>
 
-  <div class="testimonials__viewport">
+  <div
+    class="testimonials__viewport"
+    (pointerdown)="startSwipe($event)"
+    (pointerup)="finishSwipe($event)"
+    (pointercancel)="cancelSwipe()"
+  >
     <div
       class="testimonials__track"
       [class.testimonials__track--next]="slideDirection() === 'next'"

@@ -54,4 +54,17 @@ describe('Testimonials', () => {
 
     expect(fixture.nativeElement.querySelector('.testimonials__dot--active')).toBe(dots[0]);
   });
+
+  it('changes testimonials with a horizontal swipe', () => {
+    const fixture = TestBed.createComponent(Testimonials);
+    fixture.detectChanges();
+    const viewport = fixture.nativeElement.querySelector('.testimonials__viewport') as HTMLElement;
+
+    viewport.dispatchEvent(new MouseEvent('pointerdown', { bubbles: true, clientX: 250, clientY: 100 }));
+    viewport.dispatchEvent(new MouseEvent('pointerup', { bubbles: true, clientX: 150, clientY: 105 }));
+    fixture.detectChanges();
+
+    const dots = fixture.nativeElement.querySelectorAll('.testimonials__dot');
+    expect(fixture.nativeElement.querySelector('.testimonials__dot--active')).toBe(dots[1]);
+  });
 });

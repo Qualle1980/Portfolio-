@@ -18,6 +18,8 @@ import { PortfolioContent } from '../../../../shared/services/portfolio-content'
 })
 export class Testimonials {
   private readonly portfolioContent = inject(PortfolioContent);
+  private swipeStartX: number | null = null;
+  private swipeStartY: number | null = null;
 
   protected readonly testimonials = computed(
     () => this.portfolioContent.currentContent().testimonials,
@@ -53,6 +55,28 @@ export class Testimonials {
 
   protected finishSlide(): void {
     this.slideDirection.set(null);
+  }
+
+  protected startSwipe(event: PointerEvent): void {
+    if (event.pointerType === 'mouse' && event.button !== 0) return;
+    this.swipeStartX = event.clientX;
+    this.swipeStartY = event.clientY;
+  }
+
+  protected finishSwipe(event: PointerEvent): void {
+    if (this.swipeStartX === null || this.swipeStartY === null) return;
+
+    const distanceX = event.clientX - this.swipeStartX;
+    const distanceY = event.clientY - this.swipeStartY;
+    this.cancelSwipe();
+
+    if (Math.abs(distanceX) < 48 || Math.abs(distanceX) <= Math.abs(distanceY)) return;
+    distanceX < 0 ? this.showNext() : this.showPrevious();
+  }
+
+  protected cancelSwipe(): void {
+    this.swipeStartX = null;
+    this.swipeStartY = null;
   }
 
   @HostListener('document:keydown.arrowleft')
