@@ -11,6 +11,98 @@ function respond(int $status, bool $success): never
     exit;
 }
 
+function smtpRead($socket): string
+{
+    $response = '';
+    while (($line = fgets($socket, 515)) !== false) {
+        $response .= $line;
+        if (strlen($line) < 4 || $line[3] === ' ') {
+            break;
+        }
+    }
+    return $response;
+}
+
+function smtpCommand($socket, string $command, array $expectedCodes): void
+{
+    if ($command !== '') {
+        fwrite($socket, $command . "\r\n");
+    }
+
+    $response = smtpRead($socket);
+    $code = (int) substr($response, 0, 3);
+    if (!in_array($code, $expectedCodes, true)) {
+        throw new RuntimeException("SMTP command failed with status {$code}.");
+    }
+}
+
+function sendViaSmtp(string $recipient, string $subject, string $body, string $replyTo): bool
+{
+    $configPath = dirname(__DIR__, 2) . '/private/contact-config.php';
+    if (!is_file($configPath)) {
+        throw new RuntimeException('SMTP configuration is missing.');
+    }
+
+    $config = require $configPath;
+    $password = is_array($config) ? (string) ($config['password'] ?? '') : '';
+    if ($password === '') {
+        throw new RuntimeException('SMTP password is missing.');
+    }
+
+    $host = 'mxe9bf.netcup.net';
+    $username = 'contact@ahmad-ataya.de';
+    $socket = stream_socket_client(
+        "tcp://{$host}:587",
+        $errorNumber,
+        $errorMessage,
+        15,
+        STREAM_CLIENT_CONNECT
+    );
+
+    if ($socket === false) {
+        throw new RuntimeException("SMTP connection failed ({$errorNumber}).");
+    }
+
+    stream_set_timeout($socket, 15);
+
+    try {
+        smtpCommand($socket, '', [220]);
+        smtpCommand($socket, 'EHLO ahmad-ataya.de', [250]);
+        smtpCommand($socket, 'STARTTLS', [220]);
+
+        if (!stream_socket_enable_crypto($socket, true, STREAM_CRYPTO_METHOD_TLS_CLIENT)) {
+            throw new RuntimeException('SMTP encryption could not be enabled.');
+        }
+
+        smtpCommand($socket, 'EHLO ahmad-ataya.de', [250]);
+        smtpCommand($socket, 'AUTH LOGIN', [334]);
+        smtpCommand($socket, base64_encode($username), [334]);
+        smtpCommand($socket, base64_encode($password), [235]);
+        smtpCommand($socket, "MAIL FROM:<{$username}>", [250]);
+        smtpCommand($socket, "RCPT TO:<{$recipient}>", [250, 251]);
+        smtpCommand($socket, 'DATA', [354]);
+
+        $headers = [
+            'Date: ' . date(DATE_RFC2822),
+            'From: Ahmad Ataya Portfolio <contact@ahmad-ataya.de>',
+            "Reply-To: {$replyTo}",
+            'MIME-Version: 1.0',
+            'Content-Type: text/plain; charset=UTF-8',
+            'Content-Transfer-Encoding: 8bit',
+            'Subject: =?UTF-8?B?' . base64_encode($subject) . '?=',
+        ];
+        $message = implode("\r\n", $headers) . "\r\n\r\n" . str_replace("\n", "\r\n", $body);
+        $message = preg_replace('/^\./m', '..', $message) ?? $message;
+        fwrite($socket, $message . "\r\n.\r\n");
+        smtpCommand($socket, '', [250]);
+        smtpCommand($socket, 'QUIT', [221]);
+    } finally {
+        fclose($socket);
+    }
+
+    return true;
+}
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Allow: POST');
     respond(405, false);
@@ -50,21 +142,11 @@ $safeName = str_replace(["\r", "\n"], '', $name);
 $safeEmail = str_replace(["\r", "\n"], '', $email);
 $subject = 'Neue Portfolio-Anfrage von ' . $safeName;
 $body = "Name: {$safeName}\nE-Mail: {$safeEmail}\n\nNachricht:\n{$message}\n";
-$headers = [
-    'From: Ahmad Ataya Portfolio <contact@ahmad-ataya.de>',
-    "Reply-To: {$safeEmail}",
-    'Content-Type: text/plain; charset=UTF-8',
-];
-
-$sent = mail(
-    'ahmad-ataya@hotmail.de',
-    '=?UTF-8?B?' . base64_encode($subject) . '?=',
-    $body,
-    implode("\r\n", $headers)
-);
-
-if (!$sent) {
-    error_log('Portfolio contact form: PHP mail() rejected the message.');
+$sent = false;
+try {
+    $sent = sendViaSmtp('ahmad-ataya@hotmail.de', $subject, $body, $safeEmail);
+} catch (Throwable $error) {
+    error_log('Portfolio contact form: ' . $error->getMessage());
 }
 
 respond($sent ? 200 : 500, $sent);
