@@ -144,7 +144,7 @@ $subject = 'Neue Portfolio-Anfrage von ' . $safeName;
 $body = "Name: {$safeName}\nE-Mail: {$safeEmail}\n\nNachricht:\n{$message}\n";
 $sent = false;
 try {
-    $sent = sendViaSmtp('ahmad-ataya@hotmail.de', $subject, $body, $safeEmail);
+    $sent = sendViaSmtp('contact@ahmad-ataya.de', $subject, $body, $safeEmail);
 } catch (Throwable $error) {
     error_log('Portfolio contact form: ' . $error->getMessage());
 }
