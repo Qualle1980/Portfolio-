@@ -56,12 +56,15 @@ $headers = [
     'Content-Type: text/plain; charset=UTF-8',
 ];
 
-$sent = @mail(
+$sent = mail(
     'ahmad-ataya@hotmail.de',
     '=?UTF-8?B?' . base64_encode($subject) . '?=',
     $body,
-    implode("\r\n", $headers),
-    '-f contact@ahmad-ataya.de'
+    implode("\r\n", $headers)
 );
+
+if (!$sent) {
+    error_log('Portfolio contact form: PHP mail() rejected the message.');
+}
 
 respond($sent ? 200 : 500, $sent);
