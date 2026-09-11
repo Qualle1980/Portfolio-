@@ -79,7 +79,12 @@ export class Contact {
       privacy,
       website,
     }).subscribe({
-      next: () => {
+      next: (response) => {
+        if (response.success !== true) {
+          this.submitStatus.set('error');
+          return;
+        }
+
         this.submitStatus.set('ready');
         this.contactForm.reset();
       },

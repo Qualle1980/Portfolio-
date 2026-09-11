@@ -36,6 +36,11 @@ $portfolioBuild = Join-Path $portfolioRoot 'dist\ahmad-ataya-portfolio\browser'
 Copy-Item -Path (Join-Path $portfolioBuild '*') -Destination $deploymentRoot -Recurse -Force
 Copy-Item -LiteralPath (Join-Path $portfolioBuild '.htaccess') -Destination $deploymentRoot -Force
 
+$contactEndpoint = Join-Path $deploymentRoot 'api\contact.php'
+if (-not (Test-Path -LiteralPath $contactEndpoint)) {
+  throw "Contact endpoint is missing from the hosting build: $contactEndpoint"
+}
+
 Push-Location $joinRoot
 try {
   & npx ng build --configuration production --base-href /join/

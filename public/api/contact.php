@@ -2,18 +2,28 @@
 declare(strict_types=1);
 
 header('Content-Type: application/json; charset=utf-8');
+header('Cache-Control: no-store');
+
+function respond(int $status, bool $success): never
+{
+    http_response_code($status);
+    echo json_encode(['success' => $success]);
+    exit;
+}
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
-    echo json_encode(['success' => false]);
-    exit;
+    header('Allow: POST');
+    respond(405, false);
+}
+
+$contentType = strtolower((string) ($_SERVER['CONTENT_TYPE'] ?? ''));
+if (!str_starts_with($contentType, 'application/json')) {
+    respond(415, false);
 }
 
 $payload = json_decode((string) file_get_contents('php://input'), true);
 if (!is_array($payload)) {
-    http_response_code(400);
-    echo json_encode(['success' => false]);
-    exit;
+    respond(400, false);
 }
 
 $name = trim((string) ($payload['name'] ?? ''));
@@ -23,8 +33,7 @@ $privacy = ($payload['privacy'] ?? false) === true;
 $website = trim((string) ($payload['website'] ?? ''));
 
 if ($website !== '') {
-    echo json_encode(['success' => true]);
-    exit;
+    respond(200, true);
 }
 
 $nameIsValid = preg_match("/^[\\p{L}]+(?:[ '\\-][\\p{L}]+)*$/u", $name) === 1;
@@ -34,9 +43,7 @@ if (
     mb_strlen($message) < 10 || mb_strlen($message) > 5000 ||
     !$privacy
 ) {
-    http_response_code(422);
-    echo json_encode(['success' => false]);
-    exit;
+    respond(422, false);
 }
 
 $safeName = str_replace(["\r", "\n"], '', $name);
@@ -49,15 +56,12 @@ $headers = [
     'Content-Type: text/plain; charset=UTF-8',
 ];
 
-$sent = mail(
+$sent = @mail(
     'ahmad-ataya@hotmail.de',
     '=?UTF-8?B?' . base64_encode($subject) . '?=',
     $body,
-    implode("\r\n", $headers)
+    implode("\r\n", $headers),
+    '-f contact@ahmad-ataya.de'
 );
 
-if (!$sent) {
-    http_response_code(500);
-}
-
-echo json_encode(['success' => $sent]);
+respond($sent ? 200 : 500, $sent);

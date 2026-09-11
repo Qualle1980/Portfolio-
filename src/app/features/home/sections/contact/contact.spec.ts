@@ -182,6 +182,36 @@ describe('Contact', () => {
     });
   });
 
+  it('does not report success when the endpoint rejects the message', () => {
+    const fixture = TestBed.createComponent(Contact);
+    fixture.detectChanges();
+
+    const component = fixture.componentInstance as unknown as {
+      contactForm: {
+        setValue(value: { name: string; email: string; message: string; privacy: boolean; website: string }): void;
+        getRawValue(): { name: string };
+      };
+      submitForm(): void;
+      submitStatus(): string;
+    };
+
+    component.contactForm.setValue({
+      name: 'Ahmad',
+      email: 'ahmad@example.com',
+      message: 'Ich möchte ein Webprojekt besprechen.',
+      privacy: true,
+      website: '',
+    });
+    component.submitForm();
+
+    TestBed.inject(HttpTestingController)
+      .expectOne('/api/contact.php')
+      .flush({ success: false });
+
+    expect(component.submitStatus()).toBe('error');
+    expect(component.contactForm.getRawValue().name).toBe('Ahmad');
+  });
+
   it('allows the longer German privacy text to wrap', () => {
     const fixture = TestBed.createComponent(Contact);
     TestBed.inject(PortfolioContent).setLanguage('de');
