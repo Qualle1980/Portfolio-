@@ -109,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 $contentType = strtolower((string) ($_SERVER['CONTENT_TYPE'] ?? ''));
-if (!str_starts_with($contentType, 'application/json')) {
+if (strpos($contentType, 'application/json') !== 0) {
     respond(415, false);
 }
 
