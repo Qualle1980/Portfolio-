@@ -11,6 +11,7 @@ import { RouterLink } from '@angular/router';
 import { Language } from '../../../shared/models/portfolio.models';
 import { PortfolioContent } from '../../../shared/services/portfolio-content';
 
+/** Controls the responsive header, language selection and section navigation. */
 @Component({
   selector: 'app-header',
   imports: [RouterLink],
@@ -35,23 +36,34 @@ export class Header implements AfterViewInit, OnDestroy {
     this.language() === 'de' ? 'Menü öffnen' : 'Open menu',
   );
 
+  /**
+   * Activates a language and optionally persists the selection through the content service.
+   * @param language - Language to display.
+   */
   protected setLanguage(language: Language): void {
     this.portfolioContent.setLanguage(language, true);
     this.closeMenu();
   }
 
+  /** Opens or closes the mobile navigation menu. */
   protected toggleMenu(): void {
     this.isMenuOpen.update((isOpen) => !isOpen);
   }
 
+  /** Closes the mobile navigation menu. */
   protected closeMenu(): void {
     this.isMenuOpen.set(false);
   }
 
+  /** Updates the header appearance to reflect the current scroll position. */
   protected updateScrollState(): void {
     this.isScrolled.set(window.scrollY > 0);
   }
 
+  /**
+   * Scrolls to a page section while accounting for the fixed header.
+   * @param fragment - Target section id without the hash prefix.
+   */
   protected navigateTo(fragment: string): void {
     this.activeSection.set(fragment);
     this.closeMenu();
@@ -70,10 +82,12 @@ export class Header implements AfterViewInit, OnDestroy {
     }, 50);
   }
 
+  /** Starts observing page sections after the header view has initialized. */
   ngAfterViewInit(): void {
     this.observeSections();
   }
 
+  /** Disconnects the section observer before the component is destroyed. */
   ngOnDestroy(): void {
     this.sectionObserver?.disconnect();
   }

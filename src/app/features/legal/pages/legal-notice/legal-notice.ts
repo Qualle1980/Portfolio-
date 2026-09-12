@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { PortfolioContent } from '../../../../shared/services/portfolio-content';
 
+/** Renders the localized legal notice. */
 @Component({
   selector: 'app-legal-notice',
   imports: [RouterLink],

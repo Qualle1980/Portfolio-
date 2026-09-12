@@ -4,6 +4,7 @@ import { LEGAL_NOTICE_COPY, PRIVACY_POLICY_COPY } from '../data/legal.data';
 import { PORTFOLIO_CONTENT } from '../data/portfolio.data';
 import { Language } from '../models/portfolio.models';
 
+/** Supplies localized portfolio and legal-page content to the application. */
 @Injectable({ providedIn: 'root' })
 export class PortfolioContent {
   private readonly document = inject(DOCUMENT);
@@ -19,6 +20,11 @@ export class PortfolioContent {
     this.document.documentElement.lang = this.language();
   }
 
+  /**
+   * Changes the active language and updates the document language attribute.
+   * @param language - Language to activate.
+   * @param persist - Whether to save the selection in local storage.
+   */
   setLanguage(language: Language, persist = false): void {
     this.language.set(language);
     this.document.documentElement.lang = language;

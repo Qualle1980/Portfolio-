@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { PortfolioContent } from '../../../../shared/services/portfolio-content';
 
+/** Displays the localized personal introduction and profile highlights. */
 @Component({
   selector: 'app-about',
   imports: [],

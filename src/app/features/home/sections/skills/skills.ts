@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { SKILL_TECHNOLOGIES } from '../../../../shared/data/portfolio.data';
 import { PortfolioContent } from '../../../../shared/services/portfolio-content';
 
+/** Presents the localized skill summary and technology collection. */
 @Component({
   selector: 'app-skills',
   imports: [RouterLink],

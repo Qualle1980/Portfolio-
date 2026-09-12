@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/c
 import { RouterLink } from '@angular/router';
 import { PortfolioContent } from '../../../../shared/services/portfolio-content';
 
+/** Displays the landing-page introduction, calls to action and social links. */
 @Component({
   selector: 'app-hero',
   imports: [RouterLink],

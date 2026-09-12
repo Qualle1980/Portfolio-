@@ -13,6 +13,7 @@ import { Projects } from '../../sections/projects/projects';
 import { Skills } from '../../sections/skills/skills';
 import { Testimonials } from '../../sections/testimonials/testimonials';
 
+/** Composes the portfolio sections and reveals them as they enter the viewport. */
 @Component({
   selector: 'app-home',
   imports: [About, Contact, Hero, Projects, Skills, Testimonials],
@@ -24,6 +25,7 @@ export class Home implements AfterViewInit, OnDestroy {
   private readonly hostElement = inject<ElementRef<HTMLElement>>(ElementRef);
   private sectionObserver?: IntersectionObserver;
 
+  /** Initializes the section reveal animation after the page view is available. */
   ngAfterViewInit(): void {
     const sections = this.hostElement.nativeElement.querySelectorAll<HTMLElement>('.section');
 
@@ -39,6 +41,7 @@ export class Home implements AfterViewInit, OnDestroy {
     sections.forEach((section) => this.sectionObserver?.observe(section));
   }
 
+  /** Disconnects the reveal observer when the home page is destroyed. */
   ngOnDestroy(): void {
     this.sectionObserver?.disconnect();
   }

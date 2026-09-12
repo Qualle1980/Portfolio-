@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/c
 import { RouterLink } from '@angular/router';
 import { PortfolioContent } from '../../../shared/services/portfolio-content';
 
+/** Renders the localized site footer and its external contact links. */
 @Component({
   selector: 'app-footer',
   imports: [RouterLink],

@@ -1,10 +1,13 @@
+/** Languages supported by the portfolio. */
 export type Language = 'de' | 'en';
 
+/** Label and target section used by the main navigation. */
 export interface NavigationItem {
   readonly label: string;
   readonly fragment: string;
 }
 
+/** Localized copy displayed in the landing-page hero. */
 export interface HeroCopy {
   readonly role: string;
   readonly name: string;
@@ -15,13 +18,16 @@ export interface HeroCopy {
   readonly ticker: readonly string[];
 }
 
+/** Identifier for an icon shown beside an about-section highlight. */
 export type AboutIcon = 'location' | 'learning' | 'quality';
 
+/** One icon-and-text highlight in the about section. */
 export interface AboutPoint {
   readonly icon: AboutIcon;
   readonly text: string;
 }
 
+/** Localized text and highlights displayed in the about section. */
 export interface AboutCopy {
   readonly label: string;
   readonly title: string;
@@ -30,6 +36,7 @@ export interface AboutCopy {
   readonly points: readonly AboutPoint[];
 }
 
+/** Identifier for a technology icon displayed in the skills grid. */
 export type SkillIcon =
   | 'html5'
   | 'css3'
@@ -43,12 +50,14 @@ export type SkillIcon =
   | 'scrum'
   | 'growth-mindset';
 
+/** One technology displayed in the skills grid. */
 export interface SkillTechnology {
   readonly id: SkillIcon;
   readonly name: string;
   readonly highlighted?: boolean;
 }
 
+/** Localized copy displayed beside the skills grid. */
 export interface SkillsCopy {
   readonly label: string;
   readonly title: string;
@@ -59,6 +68,7 @@ export interface SkillsCopy {
   readonly cta: string;
 }
 
+/** Portfolio project metadata used by the list, preview and detail dialog. */
 export interface Project {
   readonly number: string;
   readonly title: string;
@@ -73,6 +83,7 @@ export interface Project {
   readonly imagePosition?: 'center' | 'top';
 }
 
+/** Localized project-section labels and project entries. */
 export interface ProjectsCopy {
   readonly label: string;
   readonly title: string;
@@ -88,12 +99,14 @@ export interface ProjectsCopy {
   readonly items: readonly Project[];
 }
 
+/** One colleague reference displayed in the testimonial carousel. */
 export interface Testimonial {
   readonly author: string;
   readonly role: string;
   readonly quote: string;
 }
 
+/** Localized controls and entries for the testimonial carousel. */
 export interface TestimonialsCopy {
   readonly title: string;
   readonly previousLabel: string;
@@ -101,6 +114,7 @@ export interface TestimonialsCopy {
   readonly items: readonly Testimonial[];
 }
 
+/** Localized labels, validation messages and feedback for the contact section. */
 export interface ContactCopy {
   readonly label: string;
   readonly title: string;
@@ -131,6 +145,7 @@ export interface ContactCopy {
   readonly sendErrorMessage: string;
 }
 
+/** Localized role, location and navigation labels displayed in the footer. */
 export interface FooterCopy {
   readonly role: string;
   readonly location: string;
@@ -138,6 +153,7 @@ export interface FooterCopy {
   readonly legalLabel: string;
 }
 
+/** Complete language-specific content used by the portfolio home page. */
 export interface PortfolioCopy {
   readonly navigation: readonly NavigationItem[];
   readonly hero: HeroCopy;
