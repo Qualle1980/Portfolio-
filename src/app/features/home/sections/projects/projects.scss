@@ -222,6 +222,7 @@
     border-radius: $radius-large;
 
     img {
+      display: block;
       width: 100%;
       height: 100%;
       border-radius: inherit;
@@ -230,6 +231,19 @@
 
     &--align-top img {
       object-position: top center;
+    }
+  }
+
+  &__preview-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    cursor: pointer;
+
+    &:focus-visible {
+      outline: 0.1875rem solid $color-primary;
+      outline-offset: -0.1875rem;
     }
   }
 

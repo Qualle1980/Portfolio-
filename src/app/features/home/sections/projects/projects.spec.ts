@@ -53,12 +53,28 @@ describe('Projects', () => {
     expect(dialog?.querySelector<HTMLImageElement>('.project-dialog__media img')?.src).toContain(
       'assets/images/projects/join.jpg',
     );
+    expect(dialog?.querySelector<HTMLAnchorElement>('.project-dialog__preview-link')?.href).toBe(
+      'https://ahmad-ataya.de/join/',
+    );
     const links = dialog?.querySelectorAll<HTMLAnchorElement>('.project-dialog__links a');
     expect(links?.length).toBe(2);
     expect(links?.[0].href).toBe(
       'https://github.com/Qualle1980/join',
     );
     expect(links?.[1].href).toBe('https://ahmad-ataya.de/join/');
+  });
+
+  it('links the El Pollo Loco preview image to its live project', () => {
+    const fixture = TestBed.createComponent(Projects);
+    fixture.detectChanges();
+
+    const element = fixture.nativeElement as HTMLElement;
+    element.querySelectorAll<HTMLButtonElement>('.projects__trigger')[1].click();
+    fixture.detectChanges();
+
+    const previewLink = element.querySelector<HTMLAnchorElement>('.project-dialog__preview-link');
+    expect(previewLink?.href).toBe('https://ahmad-ataya.de/el-pollo-loco/');
+    expect(previewLink?.getAttribute('aria-label')).toContain('El Pollo Loco');
   });
 
   it('renders a matching hover preview for every project', () => {

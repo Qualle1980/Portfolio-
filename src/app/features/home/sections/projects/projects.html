@@ -117,13 +117,31 @@
         class="project-dialog__media"
         [class.project-dialog__media--align-top]="project.imagePosition === 'top'"
       >
-        <img
-          [src]="project.image"
-          [alt]="project.imageAlt"
-          width="520"
-          height="320"
-          decoding="async"
-        />
+        @if (project.liveUrl) {
+          <a
+            class="project-dialog__preview-link"
+            [href]="project.liveUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            [attr.aria-label]="projects().liveLabel + ': ' + project.title"
+          >
+            <img
+              [src]="project.image"
+              [alt]="project.imageAlt"
+              width="520"
+              height="320"
+              decoding="async"
+            />
+          </a>
+        } @else {
+          <img
+            [src]="project.image"
+            [alt]="project.imageAlt"
+            width="520"
+            height="320"
+            decoding="async"
+          />
+        }
       </div>
 
       <button class="project-dialog__next" type="button" (click)="showNextProject()">
