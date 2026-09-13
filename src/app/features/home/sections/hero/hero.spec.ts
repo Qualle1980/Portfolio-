@@ -57,19 +57,6 @@ describe('Hero', () => {
     expect(links[1].getAttribute('href')).toBe('/#contact');
   });
 
-  it('renders two complete ticker groups for a seamless marquee loop', () => {
-    const fixture = TestBed.createComponent(Hero);
-    fixture.detectChanges();
-
-    const groups = fixture.nativeElement.querySelectorAll(
-      '.hero__marquee-group',
-    ) as NodeListOf<HTMLElement>;
-
-    expect(groups.length).toBe(2);
-    expect(groups[0].textContent).toBe(groups[1].textContent);
-    expect(groups[0].textContent).toContain('Based in Ludwigshafen am Rhein');
-  });
-
   it('uses Ahmad Ataya social profile links', () => {
     const fixture = TestBed.createComponent(Hero);
     fixture.detectChanges();

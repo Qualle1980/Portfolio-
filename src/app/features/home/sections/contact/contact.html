@@ -61,7 +61,10 @@
         </p>
       </div>
 
-      <div class="contact-form__field" [class.contact-form__field--error]="isInvalid('message')">
+      <div
+        class="contact-form__field contact-form__field--message"
+        [class.contact-form__field--error]="isInvalid('message')"
+      >
         <label for="contact-message">{{ contact().messageLabel }}</label>
         <textarea
           id="contact-message"
