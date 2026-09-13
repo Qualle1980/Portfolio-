@@ -17,7 +17,7 @@ describe('PrivacyPolicy', () => {
     expect(content).toContain('Privacy Policy');
     expect(content).toContain('Ahmad Ataya');
     expect(content).toContain('Gabelsberger Str. 49');
-    expect(content).toContain('ahmad-ataya@hotmail.de');
+    expect(content).toContain('contact@ahmad-ataya.de');
     expect(content).toContain('does not set cookies');
   });
 

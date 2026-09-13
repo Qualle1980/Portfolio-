@@ -18,7 +18,7 @@ describe('LegalNotice', () => {
     expect(content).toContain('Ahmad Ataya');
     expect(content).toContain('Gabelsberger Str. 49');
     expect(content).toContain('67069 Ludwigshafen am Rhein');
-    expect(content).toContain('ahmad-ataya@hotmail.de');
+    expect(content).toContain('contact@ahmad-ataya.de');
   });
 
   it('reacts to a language change through the shared signal', async () => {

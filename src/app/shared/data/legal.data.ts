@@ -18,7 +18,7 @@ export const LEGAL_NOTICE_COPY: Readonly<Record<Language, LegalNoticeCopy>> = {
       },
       {
         title: 'Kontakt',
-        paragraphs: ['E-Mail: ahmad-ataya@hotmail.de'],
+        paragraphs: ['E-Mail: contact@ahmad-ataya.de'],
       },
       {
         title: 'Annahme der Bedingungen',
@@ -78,7 +78,7 @@ export const LEGAL_NOTICE_COPY: Readonly<Record<Language, LegalNoticeCopy>> = {
       },
       {
         title: 'Contact',
-        paragraphs: ['Email: ahmad-ataya@hotmail.de'],
+        paragraphs: ['Email: contact@ahmad-ataya.de'],
       },
       {
         title: 'Acceptance of terms',
@@ -137,7 +137,7 @@ export const PRIVACY_POLICY_COPY: Readonly<Record<Language, PrivacyPolicyCopy>> 
           'Gabelsberger Str. 49',
           '67069 Ludwigshafen am Rhein',
           'Deutschland',
-          'E-Mail: ahmad-ataya@hotmail.de',
+          'E-Mail: contact@ahmad-ataya.de',
         ],
       },
       {
@@ -227,7 +227,7 @@ export const PRIVACY_POLICY_COPY: Readonly<Record<Language, PrivacyPolicyCopy>> 
           'Gabelsberger Str. 49',
           '67069 Ludwigshafen am Rhein',
           'Germany',
-          'Email: ahmad-ataya@hotmail.de',
+          'Email: contact@ahmad-ataya.de',
         ],
       },
       {

@@ -34,7 +34,7 @@ describe('Footer', () => {
     const links = [...element.querySelectorAll<HTMLAnchorElement>('a')];
 
     expect(
-      links.some((link) => link.getAttribute('href') === 'mailto:ahmad-ataya@hotmail.de'),
+      links.some((link) => link.getAttribute('href') === 'mailto:contact@ahmad-ataya.de'),
     ).toBe(true);
     expect(links.some((link) => link.getAttribute('href') === '/impressum')).toBe(true);
   });

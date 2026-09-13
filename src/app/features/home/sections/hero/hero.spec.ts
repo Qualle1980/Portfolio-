@@ -69,7 +69,7 @@ describe('Hero', () => {
       'https://de.linkedin.com/in/ahmad-ataya-b82b69a0',
     );
     expect(element.querySelector('[aria-label="E-Mail"]')?.getAttribute('href')).toBe(
-      'mailto:ahmad-ataya@hotmail.de',
+      'mailto:contact@ahmad-ataya.de',
     );
   });
 });
