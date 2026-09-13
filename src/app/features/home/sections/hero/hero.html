@@ -56,13 +56,13 @@
 
   <div class="hero__marquee" aria-hidden="true">
     <div class="hero__marquee-track">
-      @for (item of hero().ticker; track $index) {
-        <span>{{ item }}</span>
-        <span class="hero__separator">•</span>
-      }
-      @for (item of hero().ticker; track $index) {
-        <span>{{ item }}</span>
-        <span class="hero__separator">•</span>
+      @for (copy of [0, 1]; track copy) {
+        <div class="hero__marquee-group">
+          @for (item of hero().ticker; track $index) {
+            <span>{{ item }}</span>
+            <span class="hero__separator">•</span>
+          }
+        </div>
       }
     </div>
   </div>

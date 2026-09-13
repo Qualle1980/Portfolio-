@@ -174,7 +174,7 @@
     bottom: 0;
     left: 50%;
     z-index: 3;
-    width: calc(100% + 5rem);
+    width: min(calc(100% - (2 * $page-padding-mobile)), $content-width);
     height: 3.3125rem;
     overflow: hidden;
     background: rgba($color-text, 0.12);
@@ -183,7 +183,7 @@
   }
 
   &__marquee-track {
-    @include flex(center, flex-start, 2.5rem);
+    display: flex;
     width: max-content;
     height: 100%;
     color: $color-primary;
@@ -192,6 +192,12 @@
     line-height: 1;
     white-space: nowrap;
     animation: marquee 18s linear infinite;
+  }
+
+  &__marquee-group {
+    @include flex(center, flex-start, 2.5rem);
+    flex: none;
+    padding-inline: 1.25rem;
   }
 
   &__separator {
@@ -243,8 +249,12 @@
     }
 
     &__marquee-track {
-      gap: 3.5rem;
       font-size: 2rem;
+    }
+
+    &__marquee-group {
+      gap: 3.5rem;
+      padding-inline: 1.75rem;
     }
   }
 
