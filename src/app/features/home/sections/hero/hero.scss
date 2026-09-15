@@ -191,10 +191,10 @@
   }
 
   &__marquee-group {
-    @include flex(center, space-around, 2.5rem);
+    @include flex(center, space-around, 1.5rem);
     flex: 0 0 auto;
-    min-width: 110vw;
-    padding-right: 2.5rem;
+    min-width: 105vw;
+    padding-right: 1.5rem;
   }
 
   &__separator {
@@ -234,8 +234,8 @@
     }
 
     &__marquee-group {
-      gap: 3.5rem;
-      padding-right: 3.5rem;
+      gap: 2rem;
+      padding-right: 2rem;
     }
   }
 
