@@ -179,7 +179,7 @@
   }
 
   &__marquee-track {
-    @include flex(center, flex-start, 2.5rem);
+    display: flex;
     width: max-content;
     height: 100%;
     color: $color-primary;
@@ -188,6 +188,13 @@
     line-height: 1;
     white-space: nowrap;
     animation: marquee 18s linear infinite;
+  }
+
+  &__marquee-group {
+    @include flex(center, space-around, 2.5rem);
+    flex: 0 0 auto;
+    min-width: 110vw;
+    padding-right: 2.5rem;
   }
 
   &__separator {
@@ -223,8 +230,12 @@
     }
 
     &__marquee-track {
-      gap: 3.5rem;
       font-size: 2rem;
+    }
+
+    &__marquee-group {
+      gap: 3.5rem;
+      padding-right: 3.5rem;
     }
   }
 
